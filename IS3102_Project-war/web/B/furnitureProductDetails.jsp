@@ -59,9 +59,7 @@
                         </div>
                     </section>
                     <div class="container">
-
                         <hr class="tall">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div>
@@ -70,22 +68,10 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="summary entry-summary">
 
                                     <h2 class="shorter"><strong><%=furniture.getName()%></strong></h2>
-                                            <%
-                                               // if (displayShoppingCartOption == true) {
-                                            %>
-                                    <!--
-                                                                        <a href="../ECommerce_AddFurnitureToListServlet?SKU=" data-toggle="modal" class="add-to-cart-product">                                                
-                                                                            <input type="button" name="btnEdit" class="btn btn-primary" id="" value="Add To Wishlist"/>
-                                                                        </a>
-                                    -->
-                                    <%
-                                      //  }
-                                    %>
                                     <p class="taller">
                                         <%if (furniture.getDescription() != null) {
                                                 out.println(furniture.getDescription());
