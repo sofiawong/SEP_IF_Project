@@ -27,15 +27,15 @@ public class ECommerce_StockAvailability extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            HttpSession session;
-            session = request.getSession();
+            HttpSession session = request.getSession();
             String URLprefix = (String) session.getAttribute("URLprefix");
             if (URLprefix == null) {
                 response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
             }
-            String storeIDstring = (String) request.getParameter("storeID");
-            String SKU = (String) request.getParameter("sku");
-            String type = (String) request.getParameter("type");
+            String storeIDstring = request.getParameter("storeID");
+            String SKU = request.getParameter("sku");
+            String type = request.getParameter("type");
+
             if ((storeIDstring == null || storeIDstring.equals("")) && (SKU == null || SKU.equals(""))) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "index.jsp");
             } else if (storeIDstring == null || storeIDstring.equals("")) {
@@ -45,18 +45,16 @@ public class ECommerce_StockAvailability extends HttpServlet {
                     response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "retailProductDetails.jsp?sku=" + SKU);
                 }
             }
-            Long storeID = Long.parseLong(storeIDstring);
-            StoreEntity storeEntity = fmb.getStoreByID(storeID);
+            int itemQty;
+            StoreEntity storeEntity = fmb.getStoreByID(Long.parseLong(storeIDstring));
             WarehouseEntity warehouseEntity = storeEntity.getWarehouse();
-            String itemQty = skimb.checkItemQty(warehouseEntity.getId(), SKU) + "";
+            itemQty = skimb.checkItemQty(warehouseEntity.getId(), SKU);
             session.setAttribute("storeEntity", storeEntity);
 
             if (type.equals("Furniture")) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeEntity.getId());
-                return;
             } else if (type.equals("Retail Product")) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "retailProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeEntity.getId());
-                return;
             }
 
         } catch (Exception ex) {
