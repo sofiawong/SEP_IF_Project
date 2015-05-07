@@ -32,12 +32,10 @@ public class ECommerce_SelectCountry extends HttpServlet {
             }
             Long countryID = facilityManagementBeanLocal.getCountryID(country);
             List<CountryEntity> fullCountryList = facilityManagementBeanLocal.getListOfCountries();
-            CountryEntity selectedCountry = null;
             List<StoreEntity> storesInCountry = new ArrayList<>();
             //List all stores in the country
             for (CountryEntity countryEntity : fullCountryList) {
                 if (countryEntity.getId().equals(countryID)) {
-                    selectedCountry = countryEntity;
                     storesInCountry = countryEntity.getStores();
                     break;
                 }
