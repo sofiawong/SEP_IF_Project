@@ -186,6 +186,7 @@
                                                                     }
 
                                                                     if (canAccessByWarehouseManager || roleIsAdmin || canAccessByRegionalManager || canAccessByStoreManager) {
+                                                                %>
                                                                 <input type="button" name="btnEdit" value="Select" class="btn btn-primary btn-block"  onclick="javascript:updateStoreWarehouse('<%=warehouses.get(i).getId()%>', 'storeWarehouseManagement.jsp')"/>                                                                                                                            
                                                                 <%} else {%>
                                                                 <input type="button" name="btnEdit" value="Select" class="btn btn-primary btn-block"  disabled/>
