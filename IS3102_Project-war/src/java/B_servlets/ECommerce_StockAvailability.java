@@ -1,26 +1,20 @@
 package B_servlets;
 
-import CorporateManagement.FacilityManagement.FacilityManagementBeanLocal;
-import EntityManager.Item_CountryEntity;
-import EntityManager.StoreEntity;
-import EntityManager.WarehouseEntity;
-import InventoryManagement.StoreAndKitchenInventoryManagement.StoreAndKitchenInventoryManagementBeanLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 public class ECommerce_StockAvailability extends HttpServlet {
-
-    @EJB
-    private StoreAndKitchenInventoryManagementBeanLocal skimb;
-    @EJB
-    private FacilityManagementBeanLocal fmb;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,6 +30,7 @@ public class ECommerce_StockAvailability extends HttpServlet {
             String SKU = request.getParameter("sku");
             String type = request.getParameter("type");
 
+            //<editor-fold defaultstate="collapsed" desc="check storeID and SKU validity">
             if ((storeIDstring == null || storeIDstring.equals("")) && (SKU == null || SKU.equals(""))) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "index.jsp");
             } else if (storeIDstring == null || storeIDstring.equals("")) {
@@ -45,21 +40,46 @@ public class ECommerce_StockAvailability extends HttpServlet {
                     response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "retailProductDetails.jsp?sku=" + SKU);
                 }
             }
-            int itemQty;
-            StoreEntity storeEntity = fmb.getStoreByID(Long.parseLong(storeIDstring));
-            WarehouseEntity warehouseEntity = storeEntity.getWarehouse();
-            itemQty = skimb.checkItemQty(warehouseEntity.getId(), SKU);
-            session.setAttribute("storeEntity", storeEntity);
+            //</editor-fold>
+            
+            Long storeID = Long.parseLong(storeIDstring);
+            int itemQty = getQuantity(storeID, SKU);
 
             if (type.equals("Furniture")) {
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeEntity.getId());
+                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeID);
             } else if (type.equals("Retail Product")) {
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "retailProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeEntity.getId());
+                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "retailProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeID);
             }
 
         } catch (Exception ex) {
             out.println("\n\n " + ex.getMessage());
             ex.printStackTrace();
+        }
+    }
+
+    public int getQuantity(Long storeID, String SKU) {
+        try {
+            System.out.println("getQuantity() SKU: " + SKU);
+            Client client = ClientBuilder.newClient();
+            WebTarget target = client
+                    //.target("http://localhost:8080/IS3102_MobileWS/webresources/entity.storeentity")
+                    .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.storeentity")
+                    .path("getQuantity")
+                    .queryParam("storeID", storeID)
+                    .queryParam("SKU", SKU);
+            Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+            Response response = invocationBuilder.get();
+            System.out.println("status: " + response.getStatus());
+            if (response.getStatus() != 200) {
+                return 0;
+            }
+            String result = (String) response.readEntity(String.class);
+            System.out.println("Result returned from ws: " + result);
+            return Integer.parseInt(result);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 
