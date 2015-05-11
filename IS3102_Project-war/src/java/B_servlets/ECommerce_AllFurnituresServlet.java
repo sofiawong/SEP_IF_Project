@@ -1,17 +1,12 @@
 package B_servlets;
 
-import CorporateManagement.ItemManagement.ItemManagementBeanLocal;
-import EntityManager.Item_CountryEntity;
-import EntityManager.PromotionEntity;
 import HelperClasses.Furniture;
-import OperationalCRM.PromotionalSales.PromotionalSalesBeanLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import javax.ws.rs.client.Client;
@@ -24,10 +19,6 @@ import javax.ws.rs.core.Response;
 
 public class ECommerce_AllFurnituresServlet extends HttpServlet {
 
-    @EJB
-    private ItemManagementBeanLocal imbl;
-    @EJB
-    private PromotionalSalesBeanLocal psbl;
     String URLprefix = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,17 +27,11 @@ public class ECommerce_AllFurnituresServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            HttpSession session;
-            session = request.getSession();
-
+            HttpSession session = request.getSession();
             Long countryID = (Long) session.getAttribute("countryID");
 
             List<Furniture> furnitures = retrieveFurnitureRESTful(countryID);
-            //List<Item_CountryEntity> item_countryList = imbl.listAllItemsOfCountry(countryID);
-            List<PromotionEntity> promotions = psbl.getAllActivePromotionsInCountry(countryID);
             session.setAttribute("furnitures", furnitures);
-            //session.setAttribute("item_countryList", item_countryList);
-            session.setAttribute("promotions", promotions);
 
             URLprefix = (String) session.getAttribute("URLprefix");
             if (URLprefix == null) {
@@ -78,10 +63,8 @@ public class ECommerce_AllFurnituresServlet extends HttpServlet {
         if (response.getStatus() != 200) {
             return null;
         }
-
         List<Furniture> list = response.readEntity(new GenericType<List<Furniture>>() {
         });
-
         return list;
     }
 

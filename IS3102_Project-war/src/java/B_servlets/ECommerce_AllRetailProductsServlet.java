@@ -1,18 +1,12 @@
 package B_servlets;
 
-import CorporateManagement.ItemManagement.ItemManagementBeanLocal;
-import EntityManager.Item_CountryEntity;
-import EntityManager.PromotionEntity;
-import EntityManager.RetailProductEntity;
 import HelperClasses.RetailProduct;
-import OperationalCRM.PromotionalSales.PromotionalSalesBeanLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import javax.ws.rs.client.Client;
@@ -24,28 +18,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 public class ECommerce_AllRetailProductsServlet extends HttpServlet {
-
-    @EJB
-    private ItemManagementBeanLocal imbl;
-    @EJB
-    private PromotionalSalesBeanLocal psbl;
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         try {
-            HttpSession session;
-            session = request.getSession();
+            HttpSession session = request.getSession();
             Long countryID = (Long) session.getAttribute("countryID");
-
             List<RetailProduct> retailProducts = getRetailProductListRESTful(countryID);
             session.setAttribute("retailProducts", retailProducts);
-            //List<Item_CountryEntity> item_countryList = imbl.listAllItemsOfCountry(countryID);
-            List<PromotionEntity> promotions = psbl.getAllActivePromotionsInCountry(countryID);
-           // session.setAttribute("item_countryList", item_countryList);
-            session.setAttribute("promotions", promotions);
 
             String URLprefix = (String) session.getAttribute("URLprefix");
             if (URLprefix == null) {

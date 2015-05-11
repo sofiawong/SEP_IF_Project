@@ -21,8 +21,6 @@
     <body>
         <%
             List<Furniture> furnitures = (List<Furniture>) (session.getAttribute("furnitures"));
-            //List<Item_CountryEntity> item_countryList = (List<Item_CountryEntity>) (session.getAttribute("item_countryList"));
-            List<PromotionEntity> promotions = (List<PromotionEntity>) session.getAttribute("promotions");
         %>
 
         <div class="body">
@@ -73,29 +71,14 @@
                                             <span class="product-thumb-info-act-left"><em>Width: <%=furnitures.get(i).getWidth()%></em></span><br/>
                                             <%
                                                 String normalPrice = "$" + furnitures.get(i).getPrice() + "0 ";
-                                                PromotionEntity promotion = null;
-                                                String promoPrice = "";
                                                 String furnitureID = furnitures.get(i).getId() + "";
                                                 String SKU = furnitures.get(i).getSKU();
-                                                String price = "";
+                                                String price = furnitures.get(i).getPrice() + "";
                                                 String name = furnitures.get(i).getName();
                                                 String imageURL = furnitures.get(i).getImageUrl();
-                                                if (promotions != null) {
-                                                    for (int k = 0; k < promotions.size(); k++) {
-                                                        if (promotions.get(k).getItem().getSKU().equals(SKU)) {
-                                                            promotion = promotions.get(k);
-                                                            promoPrice = "$" + (furnitures.get(i).getPrice() * (100 - promotion.getDiscountRate()) / 100) + "0 ";
-                                                        }
-                                                    }
-                                                }
+
                                             %>
-                                            <%if (promotion == null) {%>
                                             <span class="product-thumb-info-act-left"><em>Price: <%=normalPrice%></em></span>
-                                            <%price = furnitures.get(i).getPrice() + "";
-                                            } else {%>
-                                            <span class="product-thumb-info-act-left"><em>Price: <%=promoPrice%></em></span>
-                                            <%price = furnitures.get(i).getPrice() * (100 - promotion.getDiscountRate()) / 100 + "a";
-                                                }%>
                                             <br/>
                                             <a href="furnitureProductDetails.jsp?sku=<%=SKU%>"><span class="product-thumb-info-act-left"><em>More Details</em></span></a>
 

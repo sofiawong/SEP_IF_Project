@@ -18,12 +18,12 @@
 <jsp:forward page="index.jsp" />
 <%
     }
-    Boolean displayShoppingCartOption = false;
+    Boolean isMemberLoggedIn = false;
     MemberEntity member = (MemberEntity) (session.getAttribute("member"));
     if (member == null) {
-        displayShoppingCartOption = false;
+        isMemberLoggedIn = false;
     } else {
-        displayShoppingCartOption = true;
+        isMemberLoggedIn = true;
     }
 %>
 <html> <!--<![endif]-->
@@ -40,24 +40,7 @@
                     }
                 }
             }
-            PromotionEntity promotion = null;
-            List<PromotionEntity> promotions = (List<PromotionEntity>) session.getAttribute("promotions");
-            if (promotions != null) {
-                for (int i = 0; i < promotions.size(); i++) {
-                    if (promotions.get(i).getItem().getSKU().equals(sku)) {
-                        promotion = promotions.get(i);
-                    }
-                }
-            }
-
         %>
-        <script>
-            function popupwindow(url, title, w, h) {
-                var left = (screen.width / 2) - (w / 2);
-                var top = (screen.height / 2) - (h / 2);
-                return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-            }
-        </script>
         <div class="body">
             <jsp:include page="menu2.jsp" />
             <div class="body">
@@ -72,9 +55,7 @@
                         </div>
                     </section>
                     <div class="container">
-
                         <hr class="tall">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div>
@@ -83,51 +64,25 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-6">
                                 <div class="summary entry-summary">
-
                                     <h2 class="shorter"><strong><%=furniture.getName()%></strong></h2>
-
-                                    <%
-
-                                        String finalPrice = "";
-                                        String price = "Unavailable";
-                                        String promoPrice = "";
-                                        String promoEndDate = "";
-
-                                        if (promotion == null) {
-                                            price = "$" + furniture.getPrice() + "0";
-                                            finalPrice = furniture.getPrice() + "";
-
-                                        } else {
-
-                                            price = "$" + furniture.getPrice() + "0";
-                                            promoPrice = "$" + furniture.getPrice() * (100 - promotion.getDiscountRate()) / 100 + "0";
-                                            DateFormat df = new SimpleDateFormat("MMM dd");
-                                            promoEndDate = df.format(promotion.getEndDate());
-                                            finalPrice = furniture.getPrice() * (100 - promotion.getDiscountRate()) / 100 + "";
-                                        }
-                                    %>
-                                    <%
-                                        if (displayShoppingCartOption == true) {
-                                    %>
+                                            <%
+                                                String finalPrice = "";
+                                                String price = "Unavailable";
+                                                price = "$" + furniture.getPrice() + "0";
+                                                finalPrice = furniture.getPrice() + "";
+                                                
+                                                if (isMemberLoggedIn == true) {
+                                            %>
                                     <a href="../../ECommerce_AddFurnitureToListServlet?id=<%=furniture.getId()%>&SKU=<%=furniture.getSKU()%>&price=<%=finalPrice%>&name=<%=furniture.getName()%>&imageURL=<%=furniture.getImageUrl()%>" data-toggle="modal" class="add-to-cart-product">                                                
                                         <input type="button" name="btnEdit" class="btn btn-primary" id="<%=furniture.getSKU()%>" value="Add To Cart"/>
                                     </a>
                                     <%
                                         }
-
-                                    %>
-                                    <%if (promotion == null) {
-
                                     %>
                                     <p class="price"><h4 class="amount"><%=price%></h4></p>
-                                    <%} else {
 
-                                    %>
-                                    <p class="price"><h4 class="amount"><s><%=price%></s><br/><%=promoPrice%> (Promo! Till <%=promoEndDate%>)</h4></p>
-                                            <%}%>
                                     <p class="taller">
                                         <%if (furniture.getDescription() != null) {
                                                 out.println(furniture.getDescription());

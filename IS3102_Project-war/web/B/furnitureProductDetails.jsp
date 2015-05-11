@@ -27,8 +27,6 @@
         <%
             List<Furniture> furnitures = (List<Furniture>) (session.getAttribute("furnitures"));
             Furniture furniture = new Furniture();
-            List<StoreEntity> storesInCountry = (List<StoreEntity>) session.getAttribute("storesInCountry");
-
             if (furnitures != null) {
                 for (int i = 0; i < furnitures.size(); i++) {
                     if (furnitures.get(i).getSKU().equals(sku)) {

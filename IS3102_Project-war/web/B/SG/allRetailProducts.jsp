@@ -11,8 +11,6 @@
     <body>
         <%
             List<RetailProduct> retailProducts = (List<RetailProduct>) (session.getAttribute("retailProducts"));
-            // List<Item_CountryEntity> item_countryList = (List<Item_CountryEntity>) (session.getAttribute("item_countryList"));
-            List<PromotionEntity> promotions = (List<PromotionEntity>) session.getAttribute("promotions");
         %>
 
         <div class="body">
@@ -29,7 +27,6 @@
                         </div>
                     </section>
                     <div class="container">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <h2 class="shorter"><strong>All Retail Products</strong></h2>
@@ -60,21 +57,9 @@
 
                                             <%
                                                 String normalPrice = "$" + retailProducts.get(i).getPrice() + "0";
-                                                PromotionEntity promotion = null;
-                                                String promoPrice = "";
-                                                if (promotions != null) {
-                                                    for (int k = 0; k < promotions.size(); k++) {
-                                                        if (promotions.get(k).getItem().getSKU().equals(retailProducts.get(i).getSKU())) {
-                                                            promotion = promotions.get(k);
-                                                            promoPrice = "$" + (retailProducts.get(i).getPrice() * (100 - promotion.getDiscountRate()) / 100) + "0";
-                                                        }
-                                                    }
                                             %>
-                                            <%if (promotion == null) {%>
                                             <span class="product-thumb-info-act-left"><em>Price: <%=normalPrice%></em></span>
-                                            <%} else {%>
-                                            <span class="product-thumb-info-act-left"><em>Price: <%=promoPrice%></em></span>
-                                            <%}%>
+
                                             <br/>
                                             <a href="retailProductDetails.jsp?sku=<%=retailProducts.get(i).getSKU()%>"><span class="product-thumb-info-act-left"><em>More Details</em></span></a>
 
@@ -82,7 +67,6 @@
                                     </span>
                                 </li>
                                 <%
-                                                }
                                             }
                                         }
                                     } catch (Exception ex) {

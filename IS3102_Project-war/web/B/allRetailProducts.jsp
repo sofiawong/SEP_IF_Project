@@ -1,26 +1,13 @@
 <%@page import="HelperClasses.RetailProduct"%>
-<%@page import="EntityManager.Item_CountryEntity"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="EntityManager.MemberEntity"%>
 <jsp:include page="checkCountry.jsp" />
-<%
-    Boolean displayShoppingCartOption = false;
-    MemberEntity member = (MemberEntity) (session.getAttribute("member"));
-    if (member == null) {
-        displayShoppingCartOption = false;
-    } else {
-        displayShoppingCartOption = true;
-    }
-%>
 <html> <!--<![endif]-->
     <jsp:include page="/B/header.html" />
     <body>
         <%
             List<RetailProduct> retailProducts = (List<RetailProduct>) (session.getAttribute("retailProducts"));
-            //List<Item_CountryEntity> item_countryList = (List<Item_CountryEntity>) (session.getAttribute("item_countryList"));
-%>
-
+        %>
         <div class="body">
             <jsp:include page="menu2.jsp" />
             <div class="body">
@@ -35,7 +22,6 @@
                         </div>
                     </section>
                     <div class="container">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <h2 class="shorter"><strong>All Retail Products</strong></h2>
@@ -43,16 +29,12 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <ul class="products product-thumb-info-list" data-plugin-masonry>
-
                                 <%
-
                                     try {
                                         if (retailProducts != null) {
                                             for (int i = 0; i < retailProducts.size(); i++) {
                                 %>
-
                                 <li class="col-md-3 col-sm-6 col-xs-12 product">
                                     <span class="product-thumb-info">
                                         <span class="product-thumb-info-image">
@@ -61,25 +43,11 @@
                                             </span>
                                             <img alt="" class="img-responsive" src="../..<%=retailProducts.get(i).getImageUrl()%>">
                                         </span>
-
                                         <span class="product-thumb-info-content">
-
                                             <h4><%=retailProducts.get(i).getName()%></h4>
-
                                             <br/>
                                             <a href="retailProductDetails.jsp?sku=<%=retailProducts.get(i).getSKU()%>"><span class="product-thumb-info-act-left"><em>More Details</em></span></a>
-
                                         </span>
-                                        <%
-                                            if (displayShoppingCartOption == true) {
-                                        %>
-
-                                        <!--a href="../ECommerce_AddFurnitureToListServlet?SKU=<%=retailProducts.get(i).getSKU()%>" data-toggle="modal" class="add-to-cart-product">                                                
-                                            <input type="button" name="btnEdit" class="btn btn-primary btn-block" id="<%=retailProducts.get(i).getSKU()%>" value="Add To Wishlist"/>
-                                        </a-->
-                                        <%
-                                            }
-                                        %>
                                     </span>
                                 </li>
                                 <%                                            }
@@ -88,7 +56,6 @@
                                         System.out.println(ex);
                                     }
                                 %>
-
                             </ul>
                         </div>
                         <hr class="tall">

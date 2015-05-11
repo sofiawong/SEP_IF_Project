@@ -1,12 +1,6 @@
 package B_servlets;
 
-import CorporateManagement.ItemManagement.ItemManagementBeanLocal;
-import EntityManager.FurnitureEntity;
-import EntityManager.Item_CountryEntity;
-import EntityManager.PromotionEntity;
-import EntityManager.RetailProductEntity;
 import HelperClasses.Furniture;
-import OperationalCRM.PromotionalSales.PromotionalSalesBeanLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
@@ -15,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import javax.ws.rs.client.Client;
@@ -26,55 +19,40 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-/**
- *
- * @author yang
- */
 public class ECommerce_FurnitureCategoryServlet extends HttpServlet {
 
-    @EJB
-    private PromotionalSalesBeanLocal promotionalSalesBean;
-
-    @EJB
-    private ItemManagementBeanLocal itemManagementBean;
     String URLprefix = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
         try {
-
-            HttpSession session;
-            session = request.getSession();
-
+            HttpSession session = request.getSession();
             String category = URLDecoder.decode(request.getParameter("cat"));
             Long countryID = (Long) session.getAttribute("countryID");
 
-            List<Furniture> furnitures = retrieveFurnitureByCategoryRESTful(countryID, category);
-
-            //List<FurnitureEntity> furnitures = itemManagementBean.viewFurnitureByCategory(category);
-            //List<FurnitureHelper> furnitures = retrieveFurnitureRESTful(countryID);
-            //List<Item_CountryEntity> item_countryList = itemManagementBean.listAllItemsOfCountry(countryID);
-            List<PromotionEntity> promotions = promotionalSalesBean.getAllActivePromotionsInCountry(countryID);
-            session.setAttribute("furnitures", furnitures);
-            //session.setAttribute("item_countryList", item_countryList);
-            session.setAttribute("promotions", promotions);
-
+            List<Furniture> furniture = retrieveFurnitureByCategoryRESTful(countryID, category);
+            //   session.setAttribute("furnitures", furnitures);
+            session.setAttribute("furnitures", furniture);
             URLprefix = (String) session.getAttribute("URLprefix");
             String categoryEncoded = URLEncoder.encode(category);
 
             if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-                return;
+               response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
+               // RequestDispatcher rd = request.getRequestDispatcher("/IS3102_Project-war/B/selectCountry.jsp");
+               // rd.forward(request, response);                
+               return;
             }
-            if (furnitures == null) {
+            if (furniture == null) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded + "&errorMsg=No furniture to be displayed.");
+               // RequestDispatcher rd = request.getRequestDispatcher("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded + "&errorMsg=No furniture to be displayed.");
+               // rd.forward(request, response);
                 return;
             }
             response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded);
-
+            //RequestDispatcher rd = request.getRequestDispatcher("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded);
+            //rd.forward(request, response);
         } catch (Exception ex) {
             out.println("\n\n " + ex.getMessage());
         }

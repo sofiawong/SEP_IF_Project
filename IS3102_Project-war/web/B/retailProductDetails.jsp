@@ -12,13 +12,6 @@
 <jsp:forward page="index.jsp" />
 <%
     }
-    Boolean displayShoppingCartOption = false;
-    MemberEntity member = (MemberEntity) (session.getAttribute("member"));
-    if (member == null) {
-        displayShoppingCartOption = false;
-    } else {
-        displayShoppingCartOption = true;
-    }
 %>
 <html> <!--<![endif]-->
     <jsp:include page="/B/header.html" />
@@ -26,8 +19,6 @@
         <%
             List<RetailProduct> retailProducts = (List<RetailProduct>) (session.getAttribute("retailProducts"));
             RetailProduct retailProduct = new RetailProduct();
-            List<StoreEntity> storesInCountry = (List<StoreEntity>) session.getAttribute("storesInCountry");
-
             if (retailProducts != null) {
                 for (int i = 0; i < retailProducts.size(); i++) {
                     if (retailProducts.get(i).getSKU().equals(sku)) {
@@ -35,15 +26,7 @@
                     }
                 }
             }
-
         %>
-        <script>
-            function popupwindow(url, title, w, h) {
-                var left = (screen.width / 2) - (w / 2);
-                var top = (screen.height / 2) - (h / 2);
-                return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-            }
-        </script>
         <div class="body">
             <jsp:include page="menu2.jsp" />
             <div class="body">
@@ -58,9 +41,7 @@
                         </div>
                     </section>
                     <div class="container">
-
                         <hr class="tall">
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div>
@@ -72,10 +53,7 @@
 
                             <div class="col-md-6">
                                 <div class="summary entry-summary">
-
                                     <h2 class="shorter"><strong><%=retailProduct.getName()%></strong></h2>
-                                          
-
                                     <p class="taller">
                                         <%if (retailProduct.getDescription() != null) {
                                                 out.println(retailProduct.getDescription());
@@ -87,7 +65,6 @@
                                     <br/><br/>
                                 </div>
                             </div>
-
                             <hr class="tall">
                         </div>
                     </div>

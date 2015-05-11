@@ -1,19 +1,11 @@
 <%@page import="HelperClasses.Furniture"%>
 <%@page import="java.net.URLDecoder"%>
-<%@page import="EntityManager.Item_CountryEntity"%>
 <%@page import="java.util.List"%>
-<%@page import="EntityManager.RetailProductEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="EntityManager.MemberEntity"%>
 <jsp:include page="checkCountry.jsp" />
 <%
-    Boolean displayShoppingCartOption = false;
     MemberEntity member = (MemberEntity) (session.getAttribute("member"));
-    if (member == null) {
-        displayShoppingCartOption = false;
-    } else {
-        displayShoppingCartOption = true;
-    }
     String category = URLDecoder.decode(request.getParameter("cat"));
     if (category == null) {
         pageContext.forward("/ECommerce_SelectCountry");
@@ -24,7 +16,6 @@
     <body>
         <%
             List<Furniture> furnitures = (List<Furniture>) (session.getAttribute("furnitures"));
-            // List<Item_CountryEntity> item_countryList = (List<Item_CountryEntity>) (session.getAttribute("item_countryList"));            
         %>
 
         <div class="body">
@@ -49,16 +40,12 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <ul class="products product-thumb-info-list" data-plugin-masonry>
-
                                 <%
-
                                     try {
                                         if (furnitures != null) {
                                             for (int i = 0; i < furnitures.size(); i++) {
                                 %>
-
                                 <li class="col-md-3 col-sm-6 col-xs-12 product">
                                     <span class="product-thumb-info">
                                         <span class="product-thumb-info-image">
@@ -67,16 +54,12 @@
                                             </span>
                                             <img alt="" class="img-responsive" src="../..<%=furnitures.get(i).getImageUrl()%>">
                                         </span>
-
                                         <span class="product-thumb-info-content">
-
                                             <h4><%=furnitures.get(i).getName()%></h4>
-
                                             <span class="product-thumb-info-act-left"><em>Height: <%=furnitures.get(i).getHeight()%></em></span><br/>
                                             <span class="product-thumb-info-act-left"><em>Length: <%=furnitures.get(i).getLength()%></em></span><br/>
                                             <span class="product-thumb-info-act-left"><em>Width: <%=furnitures.get(i).getWidth()%></em></span><br/>                                            <br/>
                                             <a href="furnitureProductDetails.jsp?sku=<%=furnitures.get(i).getSKU()%>"><span class="product-thumb-info-act-left"><em>More Details</em></span></a>
-
                                         </span>
                                     </span>
                                 </li>

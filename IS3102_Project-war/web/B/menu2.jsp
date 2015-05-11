@@ -63,12 +63,6 @@
             <nav class="nav-main mega-menu">
                 <ul class="nav nav-pills nav-main" id="mainMenu">
                     <li class="dropdown">
-                        <a href="../ECommerce_AllFurnituresServlet">Furnitures</a>
-                    </li>
-                    <li>
-                        <a href="../ECommerce_AllRetailProductsServlet">Retail Products</a>
-                    </li>
-                    <li class="dropdown">
                         <a class="dropdown-toggle" href="#">
                             All Departments
                             <i class="icon icon-angle-down"></i>

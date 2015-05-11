@@ -11,9 +11,7 @@
     <body>
         <%
             List<Furniture> furnitures = (List<Furniture>) (session.getAttribute("furnitures"));
-            List<Item_CountryEntity> item_countryList = (List<Item_CountryEntity>) (session.getAttribute("item_countryList"));
         %>
-
         <div class="body">
             <jsp:include page="menu2.jsp" />
             <div class="body">
