@@ -30,16 +30,12 @@
     <jsp:include page="header.html" />
     <body>
         <%
-            List<Furniture> furnitures = (List<Furniture>) (session.getAttribute("furnitures"));
-            Furniture furniture = new Furniture();
             List<StoreEntity> storesInCountry = (List<StoreEntity>) session.getAttribute("storesInCountry");
-            if (furnitures != null) {
-                for (int i = 0; i < furnitures.size(); i++) {
-                    if (furnitures.get(i).getSKU().equals(sku)) {
-                        furniture = furnitures.get(i);
-                    }
-                }
-            }
+            List<Furniture> furnitures = (List<Furniture>) (session.getAttribute("furnitures"));
+            
+            /*** insert code here ***/
+            
+            session.removeAttribute("furnitures");
         %>
         <div class="body">
             <jsp:include page="menu2.jsp" />
@@ -60,42 +56,38 @@
                             <div class="col-md-6">
                                 <div>
                                     <div class="thumbnail">
-                                        <img alt="" class="img-responsive img-rounded" src="../../..<%=furniture.getImageUrl()%>">
+                                        <img alt="" class="img-responsive img-rounded" src="../../..<%/*** insert code here ***/%>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="summary entry-summary">
-                                    <h2 class="shorter"><strong><%=furniture.getName()%></strong></h2>
+                                    <h2 class="shorter"><strong><%/*** insert code here ***/%></strong></h2>
                                             <%
-                                                String finalPrice = "";
-                                                String price = "Unavailable";
-                                                price = "$" + furniture.getPrice() + "0";
-                                                finalPrice = furniture.getPrice() + "";
-                                                
+                                                /*** insert code here ***/
+
                                                 if (isMemberLoggedIn == true) {
                                             %>
-                                    <a href="../../ECommerce_AddFurnitureToListServlet?id=<%=furniture.getId()%>&SKU=<%=furniture.getSKU()%>&price=<%=finalPrice%>&name=<%=furniture.getName()%>&imageURL=<%=furniture.getImageUrl()%>" data-toggle="modal" class="add-to-cart-product">                                                
-                                        <input type="button" name="btnEdit" class="btn btn-primary" id="<%=furniture.getSKU()%>" value="Add To Cart"/>
+                                    <a href="../../ECommerce_AddFurnitureToListServlet?id=<%/*** insert code here ***/%>&SKU=<%/*** insert code here ***/%>&price=<%/*** insert code here ***/%>&name=<%/*** insert code here ***/%>&imageURL=<%/*** insert code here ***/%>" data-toggle="modal" class="add-to-cart-product">                                                
+                                        <input type="button" name="btnEdit" class="btn btn-primary" id="<%/*** insert code here ***/%>" value="Add To Cart"/>
                                     </a>
                                     <%
                                         }
                                     %>
-                                    <p class="price"><h4 class="amount"><%=price%></h4></p>
+                                    <p class="price"><h4 class="amount"><%/*** insert code here ***/%></h4></p>
 
                                     <p class="taller">
-                                        <%if (furniture.getDescription() != null) {
-                                                out.println(furniture.getDescription());
-                                            }
+                                        <%
+                                                /*** insert code here ***/
                                         %>
                                     </p>
                                     <p>
-                                        Height: <%=furniture.getHeight() + " cm"%><br/>
-                                        Length: <%=furniture.getLength() + " cm"%><br/>
-                                        Width: <%=furniture.getWidth() + " cm"%>
+                                        Height: <%/*** insert code here ***/%><br/>
+                                        Length: <%/*** insert code here ***/%><br/>
+                                        Width: <%/*** insert code here ***/%>
                                     </p>
                                     <div class="product_meta">
-                                        <span class="posted_in">Category: <a rel="tag" href="../../ECommerce_FurnitureCategoryServlet?cat=<%=URLEncoder.encode(furniture.getCategory())%>"><%=furniture.getCategory()%></a></span>
+                                        <span class="posted_in">Category: <a rel="tag" href="../../ECommerce_FurnitureCategoryServlet?cat=<%/*** insert code here ***/%></a></span>
                                     </div>
                                     <br/><br/>
 
@@ -134,12 +126,10 @@
                                             <br/>
                                             Remaining Qty: <%=itemQty%>
                                             <%}%>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <hr class="tall">
                         </div>
                     </div>

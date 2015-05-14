@@ -5,12 +5,12 @@
 <%@page import="EntityManager.MemberEntity"%>
 <jsp:include page="checkCountry.jsp" />
 <%
-    Boolean displayShoppingCartOption = false;
+    Boolean isMemberLoggedIn = false;
     MemberEntity member = (MemberEntity) (session.getAttribute("member"));
     if (member == null) {
-        displayShoppingCartOption = false;
+        isMemberLoggedIn = false;
     } else {
-        displayShoppingCartOption = true;
+        isMemberLoggedIn = true;
     }
     String category = URLDecoder.decode(request.getParameter("cat"));
     if (category == null) {
@@ -48,41 +48,37 @@
                             <ul class="products product-thumb-info-list" data-plugin-masonry>
                                 <%
                                     try {
-                                        if (furnitures != null) {
-                                            for (int i = 0; i < furnitures.size(); i++) {
+                                        /**
+                                         * *insert code here**
+                                         */
                                 %>
                                 <li class="col-md-3 col-sm-6 col-xs-12 product">
                                     <span class="product-thumb-info">
                                         <span class="product-thumb-info-image">
-                                            <span class="product-thumb-info-act">                                                
-                                                <span class="product-thumb-info-act-left"><a href="furnitureProductDetails.jsp?sku=<%=furnitures.get(i).getSKU()%>"  style="color: white"><em>View Details</em></a></span>
-                                            </span>
-                                            <img alt="" class="img-responsive" src="../../..<%=furnitures.get(i).getImageUrl()%>">
+                                            <!--  <span class="product-thumb-info-act">                                                
+                                              <span class="product-thumb-info-act-left"><a href="furnitureProductDetails.jsp?sku=<%=furnitures.get(0).getSKU()%>"  style="color: white"><em>View Details</em></a></span>
+                                               </span>  -->
+                                            <img alt="" class="img-responsive" src="../../..<%=furnitures.get(0).getImageUrl()%>">
                                         </span>
 
                                         <span class="product-thumb-info-content">
-                                            <h4><%=furnitures.get(i).getName()%></h4>
-                                            <span class="product-thumb-info-act-left"><em>Height: <%=furnitures.get(i).getHeight()%></em></span><br/>
-                                            <span class="product-thumb-info-act-left"><em>Length: <%=furnitures.get(i).getLength()%></em></span><br/>
-                                            <span class="product-thumb-info-act-left"><em>Width: <%=furnitures.get(i).getWidth()%></em></span><br/>
-                                            <%
-                                                String normalPrice = "$" + furnitures.get(i).getPrice() + "0";
-                                                String furnitureID = furnitures.get(i).getId() + "";
-                                                String SKU = furnitures.get(i).getSKU();
-                                                String price = "";
-                                                String name = furnitures.get(i).getName();
-                                                String imageURL = furnitures.get(i).getImageUrl();
-                                            %>
-                                            <span class="product-thumb-info-act-left"><em>Price: <%=normalPrice%></em></span>
-                                            <%price = furnitures.get(i).getPrice() + "";%>
+                                            <h4><%=furnitures.get(0).getName()%></h4>
+                                            <span class="product-thumb-info-act-left"><em>Height: <%=furnitures.get(0).getHeight()%></em></span><br/>
+                                            <span class="product-thumb-info-act-left"><em>Length: <%=furnitures.get(0).getLength()%></em></span><br/>
+                                            <span class="product-thumb-info-act-left"><em>Width: <%=furnitures.get(0).getWidth()%></em></span><br/>
+                                            <span class="product-thumb-info-act-left"><em>Price: <%="$" + furnitures.get(0).getPrice() + "0"%></em></span>
                                             <br/>
-                                            <a href="furnitureProductDetails.jsp?sku=<%=SKU%>"><span class="product-thumb-info-act-left"><em>More Details</em></span></a>
-                                        </span>
-                                        <%
-                                            if (displayShoppingCartOption == true) {
-                                        %>
-                                        <a href="../../ECommerce_AddFurnitureToListServlet?id=<%=furnitureID%>&SKU=<%=SKU%>&price=<%=price%>&name=<%=name%>&imageURL=<%=imageURL%>" data-toggle="modal" class="add-to-cart-product">                                                
-                                            <input type="button" name="btnEdit" class="btn btn-primary btn-block" id="<%=furnitures.get(i).getSKU()%>" value="Add To Cart"/>
+                                            <form action="furnitureProductDetails.jsp">
+                                                <input type="hidden" name="sku" value="<%=furnitures.get(0).getSKU()%>"/>
+                                                <input type="submit" class="btn btn-primary btn-block" value="More Details"/>
+                                            </form>
+                                       <!--     <a href="furnitureProductDetails.jsp?sku=<%=furnitures.get(0).getSKU()%>"><span class="product-thumb-info-act-left"><em>More Details</em></span></a>
+                                            --></span>
+                                            <%
+                                                if (isMemberLoggedIn == true) {
+                                            %>
+                                        <a href="../../ECommerce_AddFurnitureToListServlet?id=<%=furnitures.get(0).getId() + ""%>&SKU=<%=furnitures.get(0).getSKU()%>&price=<%=furnitures.get(0).getPrice() + ""%>&name=<%=furnitures.get(0).getName()%>&imageURL=<%=furnitures.get(0).getImageUrl()%>" data-toggle="modal" class="add-to-cart-product">                                                
+                                            <input type="button" name="btnEdit" class="btn btn-primary btn-block" id="<%=furnitures.get(0).getSKU()%>" value="Add To Cart"/>
                                         </a>
                                         <%
                                             }
@@ -90,8 +86,6 @@
                                     </span>
                                 </li>
                                 <%
-                                            }
-                                        }
                                     } catch (Exception ex) {
                                         System.out.println(ex);
                                         ex.printStackTrace();

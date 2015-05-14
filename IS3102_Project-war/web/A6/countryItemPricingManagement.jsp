@@ -23,7 +23,7 @@
             }
             function update(id) {
                 itemPricingManagement.id.value = id;
-                itemPricingManagement.setPrice.value = $("#price" + id).val();
+                itemPricingManagement.setPrice.value = parseInt($("#price" + id).val());
                 document.itemPricingManagement.action = "../CountryItemPricingManagement_UpdateCountryItemPricingServlet";
                 document.itemPricingManagement.submit();
             }

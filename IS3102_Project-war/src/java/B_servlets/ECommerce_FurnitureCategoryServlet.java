@@ -39,15 +39,13 @@ public class ECommerce_FurnitureCategoryServlet extends HttpServlet {
             String categoryEncoded = URLEncoder.encode(category);
 
             if (URLprefix == null) {
-               response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-               // RequestDispatcher rd = request.getRequestDispatcher("/IS3102_Project-war/B/selectCountry.jsp");
-               // rd.forward(request, response);                
-               return;
+                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
+                return;
             }
             if (furniture == null) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded + "&errorMsg=No furniture to be displayed.");
                // RequestDispatcher rd = request.getRequestDispatcher("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded + "&errorMsg=No furniture to be displayed.");
-               // rd.forward(request, response);
+                // rd.forward(request, response);
                 return;
             }
             response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded);
