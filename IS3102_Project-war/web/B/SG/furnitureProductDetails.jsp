@@ -87,7 +87,7 @@
                                         Width: <%/*** insert code here ***/%>
                                     </p>
                                     <div class="product_meta">
-                                        <span class="posted_in">Category: <a rel="tag" href="../../ECommerce_FurnitureCategoryServlet?cat=<%/*** insert code here ***/%></a></span>
+                                        <span class="posted_in">Category: <a rel="tag" href="../../ECommerce_FurnitureCategoryServlet?cat=<%/*** insert code here ***/%>"</a></span>
                                     </div>
                                     <br/><br/>
 
