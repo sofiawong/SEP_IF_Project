@@ -2,12 +2,9 @@
 <%@page import="HelperClasses.Furniture"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="EntityManager.PromotionEntity"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="EntityManager.Item_CountryEntity"%>
 <%@page import="EntityManager.StoreEntity"%>
 <%@page import="java.util.List"%>
-<%@page import="EntityManager.RetailProductEntity"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="EntityManager.MemberEntity"%>
 <jsp:include page="checkCountry.jsp" />
@@ -32,10 +29,31 @@
         <%
             List<StoreEntity> storesInCountry = (List<StoreEntity>) session.getAttribute("storesInCountry");
             List<Furniture> furnitures = (List<Furniture>) (session.getAttribute("furnitures"));
-            
-            /*** insert code here ***/
-            
-            session.removeAttribute("furnitures");
+//            String furnitureID = "";
+//            double price = 0.0;
+//            String name = "";
+//            String imageURL = "";
+//            int width = 0;
+//            int height = 0;
+//            int length = 0;
+//            String description = "";
+//            String category = "";
+//            if (furnitures != null) {
+//                for (Furniture f : furnitures) {
+//                    if (f.getSKU().equals(sku)) {
+//                        furnitureID = f.getId() + "";
+//                        price = f.getPrice();
+//                        name = f.getName();
+//                        imageURL = f.getImageUrl();
+//                        width = f.getWidth();
+//                        height = f.getHeight();
+//                        length = f.getLength();
+//                        description = f.getDescription();
+//                        category = f.getCategory();
+//                    }
+//                    break;
+//                }
+//            }
         %>
         <div class="body">
             <jsp:include page="menu2.jsp" />
@@ -56,38 +74,34 @@
                             <div class="col-md-6">
                                 <div>
                                     <div class="thumbnail">
-                                        <img alt="" class="img-responsive img-rounded" src="../../..<%/*** insert code here ***/%>">
+                                        <img alt="" class="img-responsive img-rounded" src="../../..<%=%>">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="summary entry-summary">
-                                    <h2 class="shorter"><strong><%/*** insert code here ***/%></strong></h2>
+                                    <h2 class="shorter"><strong>Insert category name</strong></h2>
                                             <%
-                                                /*** insert code here ***/
-
                                                 if (isMemberLoggedIn == true) {
                                             %>
-                                    <a href="../../ECommerce_AddFurnitureToListServlet?id=<%/*** insert code here ***/%>&SKU=<%/*** insert code here ***/%>&price=<%/*** insert code here ***/%>&name=<%/*** insert code here ***/%>&imageURL=<%/*** insert code here ***/%>" data-toggle="modal" class="add-to-cart-product">                                                
-                                        <input type="button" name="btnEdit" class="btn btn-primary" id="<%/*** insert code here ***/%>" value="Add To Cart"/>
+                                    <a href="../../ECommerce_AddFurnitureToListServlet?id=<%/*insert code here*/%>&SKU=<%/*insert code here*/%>&price=<%/*insert code here*/%>&name=<%/*insert code here*/%>&imageURL=<%/*insert code here*/%>" data-toggle="modal" class="add-to-cart-product">                                                
+                                        <input type="button" name="btnEdit" class="btn btn-primary" id="<%/*insert code here*/%>" value="Add To Cart"/>
                                     </a>
                                     <%
                                         }
                                     %>
-                                    <p class="price"><h4 class="amount"><%/*** insert code here ***/%></h4></p>
-
+                                    <p class="price"><h4 class="amount"><%/*insert code here*/%></h4></p>
+                                    <strong>Description</strong>
                                     <p class="taller">
-                                        <%
-                                                /*** insert code here ***/
-                                        %>
+                                        <%/*insert code here*/%>
                                     </p>
                                     <p>
-                                        Height: <%/*** insert code here ***/%><br/>
-                                        Length: <%/*** insert code here ***/%><br/>
-                                        Width: <%/*** insert code here ***/%>
+                                        Height: <%/*insert code here*/%><br/>
+                                        Length: <%/*insert code here*/%><br/>
+                                        Width: <%/*insert code here*/%>
                                     </p>
                                     <div class="product_meta">
-                                        <span class="posted_in">Category: <a rel="tag" href="../../ECommerce_FurnitureCategoryServlet?cat=<%/*** insert code here ***/%>"</a></span>
+                                        <span class="posted_in">Category: <a rel="tag" href="../../ECommerce_FurnitureCategoryServlet?cat=<%/*insert code here*/%>"><%/*insert code here*/%></a></span>
                                     </div>
                                     <br/><br/>
 
