@@ -29,31 +29,8 @@
         <%
             List<StoreEntity> storesInCountry = (List<StoreEntity>) session.getAttribute("storesInCountry");
             List<Furniture> furnitures = (List<Furniture>) (session.getAttribute("furnitures"));
-//            String furnitureID = "";
-//            double price = 0.0;
-//            String name = "";
-//            String imageURL = "";
-//            int width = 0;
-//            int height = 0;
-//            int length = 0;
-//            String description = "";
-//            String category = "";
-//            if (furnitures != null) {
-//                for (Furniture f : furnitures) {
-//                    if (f.getSKU().equals(sku)) {
-//                        furnitureID = f.getId() + "";
-//                        price = f.getPrice();
-//                        name = f.getName();
-//                        imageURL = f.getImageUrl();
-//                        width = f.getWidth();
-//                        height = f.getHeight();
-//                        length = f.getLength();
-//                        description = f.getDescription();
-//                        category = f.getCategory();
-//                    }
-//                    break;
-//                }
-//            }
+            /*define your variables here*/
+            /*set your variables here*/
         %>
         <div class="body">
             <jsp:include page="menu2.jsp" />
