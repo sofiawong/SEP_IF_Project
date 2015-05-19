@@ -61,9 +61,17 @@
                                             <%
                                                 if (isMemberLoggedIn == true) {
                                             %>
-                                    <a href="../../ECommerce_AddFurnitureToListServlet?id=<%/*insert code here*/%>&SKU=<%/*insert code here*/%>&price=<%/*insert code here*/%>&name=<%/*insert code here*/%>&imageURL=<%/*insert code here*/%>" data-toggle="modal" class="add-to-cart-product">                                                
+                                    <!--a href="../../ECommerce_AddFurnitureToListServlet?id=<%/*insert code here*/%>&SKU=<%/*insert code here*/%>&price=<%/*insert code here*/%>&name=<%/*insert code here*/%>&imageURL=<%/*insert code here*/%>" data-toggle="modal" class="add-to-cart-product">                                                
                                         <input type="button" name="btnEdit" class="btn btn-primary" id="<%/*insert code here*/%>" value="Add To Cart"/>
-                                    </a>
+                                    </a-->
+                                    <form action="../../ECommerce_AddFurnitureToListServlet">
+                                        <input type="hidden" name="id" value="<%/*insert code here*/%>"/>
+                                        <input type="hidden" name="SKU" value="<%/*insert code here*/%>"/>
+                                        <input type="hidden" name="price" value="<%/*insert code here*/%>"/>
+                                        <input type="hidden" name="name" value="<%/*insert code here*/%>"/>
+                                        <input type="hidden" name="imageURL" value="<%/*insert code here*/%>"/>
+                                        <input type="submit" name="btnEdit" class="btn btn-primary" id="<%/*insert code here*/%>" value="Add To Cart"/>
+                                    </form>
                                     <%
                                         }
                                     %>

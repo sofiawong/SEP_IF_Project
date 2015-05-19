@@ -63,7 +63,7 @@
                                             <span class="product-thumb-info-act-left"><em>Height: <%=furnitures.get(0).getHeight()%></em></span><br/>
                                             <span class="product-thumb-info-act-left"><em>Length: <%=furnitures.get(0).getLength()%></em></span><br/>
                                             <span class="product-thumb-info-act-left"><em>Width: <%=furnitures.get(0).getWidth()%></em></span><br/>
-                                            <span class="product-thumb-info-act-left"><em>Price: <%="$" + furnitures.get(0).getPrice() + "0"%></em></span>
+                                            <span class="product-thumb-info-act-left"><em>Price: $<%=furnitures.get(0).getPrice()%>0</em></span>
                                             <br/>
                                             <form action="furnitureProductDetails.jsp">
                                                 <input type="hidden" name="sku" value="<%=furnitures.get(0).getSKU()%>"/>
@@ -72,9 +72,14 @@
                                             <%
                                                 if (isMemberLoggedIn == true) {
                                             %>
-                                            <a href="../../ECommerce_AddFurnitureToListServlet?id=<%=furnitures.get(0).getId() + ""%>&SKU=<%=furnitures.get(0).getSKU()%>&price=<%=furnitures.get(0).getPrice() + ""%>&name=<%=furnitures.get(0).getName()%>&imageURL=<%=furnitures.get(0).getImageUrl()%>" data-toggle="modal" class="add-to-cart-product">                                                
-                                                <input type="button" name="btnEdit" class="btn btn-primary btn-block" id="<%=furnitures.get(0).getSKU()%>" value="Add To Cart"/>
-                                            </a>
+                                            <form action="../../ECommerce_AddFurnitureToListServlet">
+                                                <input type="hidden" name="id" value="<%=furnitures.get(0).getId()%>"/>
+                                                <input type="hidden" name="SKU" value="<%=furnitures.get(0).getSKU()%>"/>
+                                                <input type="hidden" name="price" value="<%=furnitures.get(0).getPrice()%>"/>
+                                                <input type="hidden" name="name" value="<%=furnitures.get(0).getName()%>"/>
+                                                <input type="hidden" name="imageURL" value="<%=furnitures.get(0).getImageUrl()%>"/>
+                                                <input type="submit" name="btnEdit" class="btn btn-primary btn-block" value="Add To Cart"/>
+                                            </form>
                                             <%
                                                 }
                                             %>
