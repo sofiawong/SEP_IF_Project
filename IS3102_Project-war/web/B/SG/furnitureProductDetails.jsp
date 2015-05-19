@@ -51,7 +51,7 @@
                             <div class="col-md-6">
                                 <div>
                                     <div class="thumbnail">
-                                        <img alt="" class="img-responsive img-rounded" src="../../..<%=%>">
+                                        <img alt="" class="img-responsive img-rounded" src="../../..<%/*insert code here*/%>">
                                     </div>
                                 </div>
                             </div>
