@@ -55,9 +55,6 @@
                                 <li class="col-md-3 col-sm-6 col-xs-12 product">
                                     <span class="product-thumb-info">
                                         <span class="product-thumb-info-image">
-                                            <!--  <span class="product-thumb-info-act">                                                
-                                              <span class="product-thumb-info-act-left"><a href="furnitureProductDetails.jsp?sku=<%=furnitures.get(0).getSKU()%>"  style="color: white"><em>View Details</em></a></span>
-                                               </span>  -->
                                             <img alt="" class="img-responsive" src="../../..<%=furnitures.get(0).getImageUrl()%>">
                                         </span>
 
@@ -72,17 +69,16 @@
                                                 <input type="hidden" name="sku" value="<%=furnitures.get(0).getSKU()%>"/>
                                                 <input type="submit" class="btn btn-primary btn-block" value="More Details"/>
                                             </form>
-                                       <!--     <a href="furnitureProductDetails.jsp?sku=<%=furnitures.get(0).getSKU()%>"><span class="product-thumb-info-act-left"><em>More Details</em></span></a>
-                                            --></span>
                                             <%
                                                 if (isMemberLoggedIn == true) {
                                             %>
-                                        <a href="../../ECommerce_AddFurnitureToListServlet?id=<%=furnitures.get(0).getId() + ""%>&SKU=<%=furnitures.get(0).getSKU()%>&price=<%=furnitures.get(0).getPrice() + ""%>&name=<%=furnitures.get(0).getName()%>&imageURL=<%=furnitures.get(0).getImageUrl()%>" data-toggle="modal" class="add-to-cart-product">                                                
-                                            <input type="button" name="btnEdit" class="btn btn-primary btn-block" id="<%=furnitures.get(0).getSKU()%>" value="Add To Cart"/>
-                                        </a>
-                                        <%
-                                            }
-                                        %>
+                                            <a href="../../ECommerce_AddFurnitureToListServlet?id=<%=furnitures.get(0).getId() + ""%>&SKU=<%=furnitures.get(0).getSKU()%>&price=<%=furnitures.get(0).getPrice() + ""%>&name=<%=furnitures.get(0).getName()%>&imageURL=<%=furnitures.get(0).getImageUrl()%>" data-toggle="modal" class="add-to-cart-product">                                                
+                                                <input type="button" name="btnEdit" class="btn btn-primary btn-block" id="<%=furnitures.get(0).getSKU()%>" value="Add To Cart"/>
+                                            </a>
+                                            <%
+                                                }
+                                            %>
+                                        </span>
                                     </span>
                                 </li>
                                 <%
