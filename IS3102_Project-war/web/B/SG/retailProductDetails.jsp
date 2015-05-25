@@ -22,7 +22,7 @@
             List<RetailProduct> retailProducts = (List<RetailProduct>) (session.getAttribute("retailProducts"));
             RetailProduct retailProduct = new RetailProduct();
             List<StoreEntity> storesInCountry = (List<StoreEntity>) session.getAttribute("storesInCountry");
-            
+            /*insert code here*/
         %>
         <div class="body">
             <jsp:include page="menu2.jsp" />
@@ -51,7 +51,7 @@
                             <div class="col-md-6">
                                 <div class="summary entry-summary">
                                     <h2 class="shorter"><strong>Insert product name here</strong></h2>
-                                    
+
                                     <p class="price"><h4 class="amount"><%/*insert code here*/%></h4></p>
                                     <strong>Description</strong>
                                     <p class="taller">
