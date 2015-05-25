@@ -12,7 +12,6 @@
         <%
             List<RetailProduct> retailProducts = (List<RetailProduct>) (session.getAttribute("retailProducts"));
         %>
-
         <div class="body">
             <jsp:include page="menu2.jsp" />
             <div class="body">
@@ -33,42 +32,30 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <ul class="products product-thumb-info-list" data-plugin-masonry>
-
                                 <%
                                     try {
-                                        if (retailProducts != null) {
-                                            for (int i = 0; i < retailProducts.size(); i++) {
                                 %>
-
                                 <li class="col-md-3 col-sm-6 col-xs-12 product">
                                     <span class="product-thumb-info">
                                         <span class="product-thumb-info-image">
-                                            <span class="product-thumb-info-act">                                                
-                                                <span class="product-thumb-info-act-left"><a href="retailProductDetails.jsp?sku=<%=retailProducts.get(i).getSKU()%>"  style="color: white"><em>View Details</em></a></span>
-                                            </span>
-                                            <img alt="" class="img-responsive" src="../../..<%=retailProducts.get(i).getImageUrl()%>">
+                                            <img alt="" class="img-responsive" src="../../..<%=retailProducts.get(0).getImageUrl()%>">
                                         </span>
-
                                         <span class="product-thumb-info-content">
-
-                                            <h4><%=retailProducts.get(i).getName()%></h4>
-
+                                            <h4><%=retailProducts.get(0).getName()%></h4>
                                             <%
-                                                String normalPrice = "$" + retailProducts.get(i).getPrice() + "0";
+                                                String normalPrice = "$" + retailProducts.get(0).getPrice() + "0";
                                             %>
                                             <span class="product-thumb-info-act-left"><em>Price: <%=normalPrice%></em></span>
-
                                             <br/>
-                                            <a href="retailProductDetails.jsp?sku=<%=retailProducts.get(i).getSKU()%>"><span class="product-thumb-info-act-left"><em>More Details</em></span></a>
-
+                                            <form action="retailProductDetails.jsp">
+                                                <input type="hidden" name="sku" value="<%=retailProducts.get(0).getSKU()%>"/>
+                                                <input type="submit" class="btn btn-primary btn-block" value="More Details"/>
+                                            </form>
                                         </span>
                                     </span>
                                 </li>
                                 <%
-                                            }
-                                        }
                                     } catch (Exception ex) {
                                         System.out.println(ex);
                                     }

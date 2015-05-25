@@ -22,13 +22,7 @@
             List<RetailProduct> retailProducts = (List<RetailProduct>) (session.getAttribute("retailProducts"));
             RetailProduct retailProduct = new RetailProduct();
             List<StoreEntity> storesInCountry = (List<StoreEntity>) session.getAttribute("storesInCountry");
-            if (retailProducts != null) {
-                for (int i = 0; i < retailProducts.size(); i++) {
-                    if (retailProducts.get(i).getSKU().equals(sku)) {
-                        retailProduct = retailProducts.get(i);
-                    }
-                }
-            }
+            
         %>
         <div class="body">
             <jsp:include page="menu2.jsp" />
@@ -49,27 +43,22 @@
                             <div class="col-md-6">
                                 <div>
                                     <div class="thumbnail">
-                                        <img alt="" class="img-responsive img-rounded" src="../../..<%=retailProduct.getImageUrl()%>">
+                                        <img alt="" class="img-responsive img-rounded" src="../../..<%/*insert code here*/%>">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="summary entry-summary">
-                                    <h2 class="shorter"><strong><%=retailProduct.getName()%></strong></h2>
-                                    <%
-                                        String price = "Unavailable";
-                                        price = "$" + retailProduct.getPrice() + "0";
-                                    %>
-                                    <p class="price"><h4 class="amount"><%=price%></h4></p>
+                                    <h2 class="shorter"><strong>Insert product name here</strong></h2>
+                                    
+                                    <p class="price"><h4 class="amount"><%/*insert code here*/%></h4></p>
+                                    <strong>Description</strong>
                                     <p class="taller">
-                                        <%if (retailProduct.getDescription() != null) {
-                                                out.println(retailProduct.getDescription());
-                                            }
-                                        %>
+                                        <%/*insert code here*/%>
                                     </p>
                                     <div class="product_meta">
-                                        <span class="posted_in">Category: <a rel="tag" href="#"><%=retailProduct.getCategory()%></a></span>
+                                        <span class="posted_in">Category: <a rel="tag" href="#"><%/*insert code here*/%></a></span>
                                     </div>
                                     <br/><br/>
 
