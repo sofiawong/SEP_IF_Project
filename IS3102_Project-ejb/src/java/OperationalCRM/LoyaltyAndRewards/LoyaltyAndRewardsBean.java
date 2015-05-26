@@ -144,7 +144,7 @@ public class LoyaltyAndRewardsBean implements LoyaltyAndRewardsBeanLocal {
             q.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
             MemberEntity memberEntity = (MemberEntity) q.getSingleResult();
             StoreEntity storeEntity = em.getReference(StoreEntity.class, storeID);
-            memberEntity.setCummulativeSpending((memberEntity.getCummulativeSpending() + amountPaid/storeEntity.getCountry().getExchangeRate()));
+            memberEntity.setCumulativeSpending((memberEntity.getCumulativeSpending() + amountPaid/storeEntity.getCountry().getExchangeRate()));
             //Retrieve country for currency & exchange rate
             //Deduct his points if he used any
             memberEntity.setLoyaltyPoints(memberEntity.getLoyaltyPoints() - pointsUsed);
@@ -173,7 +173,7 @@ public class LoyaltyAndRewardsBean implements LoyaltyAndRewardsBeanLocal {
             // Find fitting tier
             for (LoyaltyTierEntity curr : tiers) {
                 Double currAmtOfSpendingRequired = curr.getAmtOfSpendingRequired();
-                if (memberEntity.getCummulativeSpending() >= currAmtOfSpendingRequired && currAmtOfSpendingRequired >= currentHighestTierSpending) {
+                if (memberEntity.getCumulativeSpending() >= currAmtOfSpendingRequired && currAmtOfSpendingRequired >= currentHighestTierSpending) {
                     currentHighestTierSpending = curr.getAmtOfSpendingRequired();
                     highestTierThatFitsMember = curr;
                 }

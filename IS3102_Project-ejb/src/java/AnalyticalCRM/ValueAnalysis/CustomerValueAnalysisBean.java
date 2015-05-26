@@ -1813,7 +1813,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         Integer days = 0;
         int totalCummulativeSpending = 0;
         for (MemberEntity member : members) {
-            regression.addData(member.getAge(), member.getCummulativeSpending());
+            regression.addData(member.getAge(), member.getCumulativeSpending());
         }
         return regression.getR();
     }
@@ -1830,7 +1830,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         Integer days = 0;
         int totalCummulativeSpending = 0;
         for (MemberEntity member : members) {
-            regression.addData(member.getAge(), member.getCummulativeSpending());
+            regression.addData(member.getAge(), member.getCumulativeSpending());
         }
         return regression.getR();
     }
@@ -1847,7 +1847,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         Integer days = 0;
         int totalCummulativeSpending = 0;
         for (MemberEntity member : members) {
-            regression.addData(member.getAge(), member.getCummulativeSpending());
+            regression.addData(member.getAge(), member.getCumulativeSpending());
         }
         return regression.getRSquare();
     }
@@ -1864,7 +1864,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         Integer days = 0;
         int totalCummulativeSpending = 0;
         for (MemberEntity member : members) {
-            regression.addData(member.getIncome(), member.getCummulativeSpending());
+            regression.addData(member.getIncome(), member.getCumulativeSpending());
         }
         return regression.getR();
     }
@@ -1881,7 +1881,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         Integer days = 0;
         int totalCummulativeSpending = 0;
         for (MemberEntity member : members) {
-            regression.addData(member.getIncome(), member.getCummulativeSpending());
+            regression.addData(member.getIncome(), member.getCumulativeSpending());
         }
         return regression.getR();
     }
@@ -1898,7 +1898,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         Integer days = 0;
         int totalCummulativeSpending = 0;
         for (MemberEntity member : members) {
-            regression.addData(member.getIncome(), member.getCummulativeSpending());
+            regression.addData(member.getIncome(), member.getCumulativeSpending());
         }
         return regression.getRSquare();
     }

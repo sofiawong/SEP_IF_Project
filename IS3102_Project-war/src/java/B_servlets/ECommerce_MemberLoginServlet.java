@@ -1,11 +1,10 @@
 package B_servlets;
 
-import CommonInfrastructure.AccountManagement.AccountManagementBeanLocal;
 import CorporateManagement.FacilityManagement.FacilityManagementBeanLocal;
 import EntityManager.CountryEntity;
 import OperationalCRM.LoyaltyAndRewards.LoyaltyAndRewardsBeanLocal;
-import EntityManager.MemberEntity;
 import EntityManager.LoyaltyTierEntity;
+import HelperClasses.Member;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -16,11 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 public class ECommerce_MemberLoginServlet extends HttpServlet {
 
-    @EJB
-    private AccountManagementBeanLocal accountManagementBean;
     @EJB
     private LoyaltyAndRewardsBeanLocal loyaltyRewardsBean;
     @EJB
@@ -40,23 +43,22 @@ public class ECommerce_MemberLoginServlet extends HttpServlet {
             response.addCookie(cookie);
 
             List<LoyaltyTierEntity> loyaltyTiers = loyaltyRewardsBean.getAllLoyaltyTiers();
-            MemberEntity memberEntity = accountManagementBean.loginMember(email, password);
-
+            Member member = loginMember(email, password);
             HttpSession session;
             session = request.getSession();
             String URLprefix = (String) session.getAttribute("URLprefix");
             if (URLprefix == null) {
                 URLprefix = "";
             }
-            if (memberEntity != null) {
+            if (member != null) {
                 List<CountryEntity> countries = facilityManagementBean.getListOfCountries();
                 session.setAttribute("countries", countries);
-                LoyaltyTierEntity nextLoyaltyTier = loyaltyRewardsBean.getMemberNextTier(memberEntity.getId());
+                LoyaltyTierEntity nextLoyaltyTier = loyaltyRewardsBean.getMemberNextTier(member.getId());
                 session.setAttribute("nextLoyaltyTier", nextLoyaltyTier);
-                session.setAttribute("member", memberEntity);
+                session.setAttribute("member", member);
                 session.setAttribute("loyaltyTiers", loyaltyTiers);
-                if (memberEntity.getCity()!= null) {
-                    String country = memberEntity.getCity();
+                if (member.getCity() != null) {
+                    String country = member.getCity();
                     switch (country) {
                         case "France":
                             session.setAttribute("URLprefix", "FRA/");
@@ -94,7 +96,26 @@ public class ECommerce_MemberLoginServlet extends HttpServlet {
         }
     }
 
+    public Member loginMember(String email, String password) {
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client
+                .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.memberentity").path("login")
+                .queryParam("email", email)
+                .queryParam("password", password);
+        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.get();
+        System.out.println("status: " + response.getStatus());
+
+        if (response.getStatus() != 200) {
+            return null;
+        }
+
+        Member member = response.readEntity(Member.class);
+        return member;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

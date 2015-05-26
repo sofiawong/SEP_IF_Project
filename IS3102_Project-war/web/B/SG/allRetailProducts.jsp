@@ -3,7 +3,6 @@
 <%@page import="EntityManager.Item_CountryEntity"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="EntityManager.MemberEntity"%>
 <jsp:include page="checkCountry.jsp" />
 <!--###-->
 <html> <!--<![endif]-->

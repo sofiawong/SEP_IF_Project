@@ -48,7 +48,7 @@ public class MemberEntity implements Serializable {
     private LoyaltyTierEntity loyaltyTier;
     private String loyaltyCardId;
     private Integer loyaltyPoints;
-    private Double cummulativeSpending;
+    private Double cumulativeSpending;
     private Boolean accountActivationStatus;
     private Boolean serviceLevelAgreement;
     private String activationCode;
@@ -100,7 +100,7 @@ public class MemberEntity implements Serializable {
         this.wishList = new WishListEntity();
         this.shoppingList = new ArrayList();
         this.purchases = new ArrayList<SalesRecordEntity>();
-        this.cummulativeSpending = 0.0;
+        this.cumulativeSpending = 0.0;
     }
 
     public String getLoyaltyCardId() {
@@ -141,12 +141,12 @@ public class MemberEntity implements Serializable {
         this.loyaltyTier = loyaltyTier;
     }
 
-    public Double getCummulativeSpending() {
-        return cummulativeSpending;
+    public Double getCumulativeSpending() {
+        return cumulativeSpending;
     }
 
-    public void setCummulativeSpending(Double cummulativeSpending) {
-        this.cummulativeSpending = cummulativeSpending;
+    public void setCumulativeSpending(Double cumulativeSpending) {
+        this.cumulativeSpending = cumulativeSpending;
     }
 
     public List<LineItemEntity> getShoppingList() {

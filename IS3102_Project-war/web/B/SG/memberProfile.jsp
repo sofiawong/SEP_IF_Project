@@ -1,5 +1,5 @@
+<%@page import="HelperClasses.Member"%>
 <%@page import="EntityManager.CountryEntity"%>
-<%@page import="EntityManager.MemberEntity"%>
 <%@page import="EntityManager.LoyaltyTierEntity"%>
 <%@page import="EntityManager.SalesRecordEntity"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -55,7 +55,7 @@
                 <div class="col-md-12">
                     <%
                         try {
-                            MemberEntity member = (MemberEntity) session.getAttribute("member");
+                            Member member = (Member) session.getAttribute("member");
                             List<LoyaltyTierEntity> loyaltyTiers = (List<LoyaltyTierEntity>) (session.getAttribute("loyaltyTiers"));
                             LoyaltyTierEntity nextLoyaltyTier = (LoyaltyTierEntity) session.getAttribute("nextLoyaltyTier");
                             DecimalFormat df = new DecimalFormat("#.##");
@@ -467,23 +467,23 @@
                                                     %>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            Current Tier : <%=member.getLoyaltyTier().getTier()%> <br/>
+                                                            Current Tier :  <br/>
                                                             Next Tier : <%=nextLoyaltyTier.getTier()%>
 
                                                             <br/><br/>
 
                                                             My Points Balance: <%=member.getLoyaltyPoints()%><br/>
-                                                            My Cummulative Spending :  <%=df.format(member.getCummulativeSpending().doubleValue())%> USD
+                                                            My Cumulative Spending :  <%=df.format(member.getCumulativeSpending().doubleValue())%> USD
 
                                                             <div class="progress">
                                                                 <div class="progress-bar progress-bar-success" style="border-bottom-right-radius: 0px;border-top-right-radius: 0px; width: <%=barRemainder * 100%>%;">
-                                                                    <%=df.format(member.getCummulativeSpending().doubleValue())%>
+                                                                    <%=df.format(member.getCumulativeSpending().doubleValue())%>
                                                                 </div>
                                                                 <div class="progress-bar progress-bar-warning progress-bar-striped" style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; width: <%=barPercentage * 100%>%">
-                                                                    <%=df.format(nextLoyaltyTier.getAmtOfSpendingRequired() - member.getCummulativeSpending().doubleValue())%>
+                                                                    <%=df.format(nextLoyaltyTier.getAmtOfSpendingRequired() - member.getCumulativeSpending().doubleValue())%>
                                                                 </div>
                                                                 <%
-                                                                    double spendingsLeft = nextLoyaltyTier.getAmtOfSpendingRequired() - member.getCummulativeSpending().doubleValue();
+                                                                    double spendingsLeft = nextLoyaltyTier.getAmtOfSpendingRequired() - member.getCumulativeSpending().doubleValue();
                                                                     if (spendingsLeft < 0) {
                                                                         out.write("");
                                                                     } else {
@@ -530,46 +530,24 @@
                                                     Items Purchased
                                                 </td>
                                                 </thead>
-                                                <%
-                                                    for (int i = 0; i < member.getPurchases().size(); i++) {
-
-
-                                                %>
                                                 <tr>
                                                     <td>
-                                                        <%=member.getPurchases().get(i).getReceiptNo()%>
                                                     </td>
                                                     <td>
-                                                        <%=member.getPurchases().get(i).getCurrency()%>
                                                     </td>
                                                     <td>
-                                                        <%=member.getPurchases().get(i).getAmountDue()%>
                                                     </td>
                                                     <td>
-                                                        <%=member.getPurchases().get(i).getAmountPaid()%>
                                                     </td>
                                                     <td>
-                                                        <%=member.getPurchases().get(i).getAmountPaidUsingPoints()%>
                                                     </td>
                                                     <td>
-                                                        <%=member.getPurchases().get(i).getCreatedDate()%>
                                                     </td>
                                                     <td>
-                                                        <%=member.getPurchases().get(i).getLoyaltyPointsDeducted()%>
-
                                                     </td>
                                                     <td> 
-                                                        <%
-                                                            for (int j = 0; j < member.getPurchases().get(i).getItemsPurchased().size(); j++) {
-                                                                out.print(member.getPurchases().get(i).getItemsPurchased().get(j).getItem().getName());
-                                                            }
-                                                        %>
-
                                                     </td>
                                                 </tr>
-                                                <%
-                                                    }
-                                                %>
                                             </table>
                                         </div>
                                     </div>

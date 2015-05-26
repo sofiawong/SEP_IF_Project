@@ -1,5 +1,5 @@
+<%@page import="HelperClasses.Member"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="EntityManager.MemberEntity"%>
 <%String URLprefix = (String) session.getAttribute("URLprefix");
     if (URLprefix == null) {
         URLprefix = "";
@@ -12,7 +12,7 @@
             </a>
         </h1>
         <%
-            MemberEntity member = (MemberEntity) (session.getAttribute("member"));
+            Member member = (Member) (session.getAttribute("member"));
             if (member == null) {
         %>
         <nav>

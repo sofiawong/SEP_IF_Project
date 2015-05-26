@@ -1,3 +1,4 @@
+<%@page import="HelperClasses.Member"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="HelperClasses.Furniture"%>
 <%@page import="java.text.DateFormat"%>
@@ -6,7 +7,6 @@
 <%@page import="EntityManager.StoreEntity"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="EntityManager.MemberEntity"%>
 <jsp:include page="checkCountry.jsp" />
 <%
     String sku = request.getParameter("sku");
@@ -16,7 +16,7 @@
 <%
     }
     Boolean isMemberLoggedIn = false;
-    MemberEntity member = (MemberEntity) (session.getAttribute("member"));
+    Member member = (Member) (session.getAttribute("member"));
     if (member == null) {
         isMemberLoggedIn = false;
     } else {

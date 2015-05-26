@@ -5,7 +5,6 @@
 <%@page import="EntityManager.StoreEntity"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="EntityManager.MemberEntity"%>
 <jsp:include page="checkCountry.jsp" />
 <%
     String sku = request.getParameter("sku");
