@@ -12,8 +12,8 @@
             </a>
         </h1>
         <%
-            Member member = (Member) (session.getAttribute("member"));
-            if (member == null) {
+            String memberName = (String) (session.getAttribute("memberName"));
+            if (memberName == null) {
         %>
         <nav>
             <ul class="nav nav-pills nav-top">
@@ -36,11 +36,9 @@
         %>
         <nav>
             <ul class="nav nav-pills nav-top">
-                <% if (member.getName() != null && member.getName() != "") {%>
                 <li>
-                    <a>Welcome <%=member.getName()%>!</a>
+                    <a>Welcome <%=memberName%>!</a>
                 </li>
-                <%}%>
                 <li>
                     <a href="../../ECommerce_StoresServlet"><i class="icon icon-map-marker"></i>Store Location</a>
                 </li>
@@ -49,7 +47,7 @@
                     <a href="shoppingCart.jsp"><i class="icon icon-shopping-cart"></i>Shopping Cart</a>
                 </li>
                 <li>
-                    <a href="../../B/<%=URLprefix%>memberProfile.jsp"><i class="icon icon-user"></i>Profile</a>
+                    <a href="../../ECommerce_GetMember"><i class="icon icon-user"></i>Profile</a>
                 </li>
                 <li>
                     <a href="contactUs.jsp"><i class="icon icon-shopping-cart"></i>Contact Us</a>

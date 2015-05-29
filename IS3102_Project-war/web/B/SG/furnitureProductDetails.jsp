@@ -16,8 +16,8 @@
 <%
     }
     Boolean isMemberLoggedIn = false;
-    Member member = (Member) (session.getAttribute("member"));
-    if (member == null) {
+    String memberEmail = (String) (session.getAttribute("memberEmail"));
+    if (memberEmail == null) {
         isMemberLoggedIn = false;
     } else {
         isMemberLoggedIn = true;

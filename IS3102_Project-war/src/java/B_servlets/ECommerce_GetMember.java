@@ -1,19 +1,12 @@
 package B_servlets;
 
-import CorporateManagement.FacilityManagement.FacilityManagementBeanLocal;
-import EntityManager.CountryEntity;
-import OperationalCRM.LoyaltyAndRewards.LoyaltyAndRewardsBeanLocal;
-import EntityManager.LoyaltyTierEntity;
+import HelperClasses.Member;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
@@ -21,56 +14,47 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-public class ECommerce_MemberLoginServlet extends HttpServlet {
-
-    @EJB
-    private FacilityManagementBeanLocal facilityManagementBean;
+public class ECommerce_GetMember extends HttpServlet {
 
     private String result;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("memberEmail");
+        String URLprefix = (String) session.getAttribute("URLprefix");
+        String location = "";
+        String errMsg = request.getParameter("errMsg");
+        String goodMsg = request.getParameter("goodMsg");
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            Cookie cookie = new Cookie("memberId", email);
-            cookie.setMaxAge(60 * 60); //1 hour
-            response.addCookie(cookie);
-
-            HttpSession session = request.getSession();
-
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                URLprefix = "";
-            }
-
-            String memberEmail = loginMember(email, password);
-
-            if (memberEmail != null) {
-                List<CountryEntity> countries = facilityManagementBean.getListOfCountries();
-                session.setAttribute("countries", countries);
-                
-                session.setAttribute("memberEmail", memberEmail);
-                session.setAttribute("URLprefix", "SG/");
-                response.sendRedirect("ECommerce_GetMember");
+            Member member = getMember(email);
+            if (member == null) {
+                result = "Error retrieving member details. Please login again.";
+                location = "/IS3102_Project-war/B/" + URLprefix + "memberLogin.jsp?errMsg=" + result;
             } else {
-                result = "Login fail. Username or password is wrong or account is not activated.";
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "memberLogin.jsp?errMsg=" + result);
+                session.setAttribute("member", member);
+                session.setAttribute("memberName", member.getName());
+                if (errMsg != null) {
+                    location = "/IS3102_Project-war/B/" + URLprefix + "memberProfile.jsp?errMsg=" + errMsg;
+                } else if (goodMsg != null) {
+                    location = "/IS3102_Project-war/B/" + URLprefix + "memberProfile.jsp?goodMsg=" + goodMsg;
+                } else {
+                    location = "/IS3102_Project-war/B/" + URLprefix + "memberProfile.jsp";
+                }
             }
-
         } catch (Exception ex) {
-            out.println(ex);
-            ex.printStackTrace();
+            result = "Error retrieving member details. Please login again.";
+            location = "/IS3102_Project-war/B/" + URLprefix + "memberLogin.jsp?errMsg=" + result;
         }
+        response.sendRedirect(location);
     }
 
-    public String loginMember(String email, String password) {
+    public Member getMember(String email) {
         Client client = ClientBuilder.newClient();
         WebTarget target = client
-                .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.memberentity").path("login")
-                .queryParam("email", email)
-                .queryParam("password", password);
+                .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.memberentity").path("getMember")
+                .queryParam("email", email);
         Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.get();
         System.out.println("status: " + response.getStatus());
@@ -79,11 +63,11 @@ public class ECommerce_MemberLoginServlet extends HttpServlet {
             return null;
         }
 
-        email = response.readEntity(String.class);
-        return email;
+        Member member = response.readEntity(Member.class);
+        return member;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

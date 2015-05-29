@@ -4,7 +4,6 @@
 <!--[if gt IE 9]><!-->	
 
 <jsp:include page="checkCountry.jsp" />
-<%String URLprefix = (String) session.getAttribute("URLprefix");%>
 <html> <!--<![endif]-->
     <jsp:include page="header.html" />
     <body>
