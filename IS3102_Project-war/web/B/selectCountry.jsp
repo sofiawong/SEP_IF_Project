@@ -21,22 +21,22 @@
                                     <div class="row">
                                         <div class="col-md-3" >
                                             <h1 style="color: white">EUROPE</h1>
-                                            <a href="../ECommerce_SelectCountry?Country=France"><h3>France</h3></a>
+                                            <a href="#"><h3>France</h3></a>
                                         </div>
                                         <div class="col-md-3" >
                                             <h1 style="color: white">America</h1>
-                                            <a href="../ECommerce_SelectCountry?Country=United States"><h3>USA</h3></a>
+                                            <a href="#"><h3>USA</h3></a>
                                         </div>
                                         <div class="col-md-3" >
                                             <h1 style="color: white">ASIA</h1>
                                             <a href="../ECommerce_SelectCountry?Country=Singapore"><h3>Singapore</h3></a>
-                                            <a href="../ECommerce_SelectCountry?Country=Indonesia"><h3>Indonesia</h3></a>
-                                            <a href="../ECommerce_SelectCountry?Country=Malaysia"><h3>Malaysia</h3></a>
-                                            <a href="../ECommerce_SelectCountry?Country=China"><h3>China</h3></a>
+                                            <a href="#"><h3>Indonesia</h3></a>
+                                            <a href="#"><h3>Malaysia</h3></a>
+                                            <a href="#"><h3>China</h3></a>
                                         </div>
                                         <div class="col-md-3" >
                                             <h1 style="color: white">Global</h1>
-                                            <a href="../ECommerce_SelectCountry?Country=International"><h3>International</h3></a>
+                                            <a href="#"><h3>International</h3></a>
                                         </div>
                                     </div>
                                 </div>
