@@ -1,15 +1,9 @@
 package B_servlets;
-//###-->
 
 import EntityManager.MemberEntity;
 import HelperClasses.ShoppingCartLineItem;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -84,7 +78,6 @@ public class ECommerce_PaymentServlet extends HttpServlet {
             Client client = ClientBuilder.newClient();
             WebTarget target = client
                     .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/commerce")
-                    //.target("http://localhost:8080/IS3102_MobileWS/webresources/commerce")
                     .path("createECommerceLineItemRecord")
                     .queryParam("salesRecordID", salesRecordID)
                     .queryParam("itemID", itemID)
@@ -111,7 +104,6 @@ public class ECommerce_PaymentServlet extends HttpServlet {
             Client client = ClientBuilder.newClient();
             WebTarget target = client
                     .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/commerce")
-                    //.target("http://localhost:8080/IS3102_MobileWS/webresources/commerce")
                     .path("createECommerceTransactionRecord")
                     .queryParam("memberID", memberId)
                     .queryParam("amountPaid", amountPaid)

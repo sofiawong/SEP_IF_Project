@@ -51,7 +51,6 @@ public class ECommerce_AllFurnituresServlet extends HttpServlet {
     public List<Furniture> retrieveFurnitureRESTful(Long countryID) {
         Client client = ClientBuilder.newClient();
         WebTarget target = client
-                //.target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.furnitureentity")
                 .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.furnitureentity")
                 .path("getFurnitureList")
                 .queryParam("countryID", countryID);

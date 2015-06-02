@@ -1,5 +1,4 @@
 package B_servlets;
-//###-->
 import HelperClasses.ShoppingCartLineItem;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,20 +33,15 @@ public class ECommerce_MinusFurnitureToListServlet extends HttpServlet {
             }
 
             String SKU = request.getParameter("SKU");
-            System.out.println("SKU is : " + SKU);
             ArrayList<ShoppingCartLineItem> shoppingCart = (ArrayList<ShoppingCartLineItem>) session.getAttribute("shoppingCart");
             if (shoppingCart == null) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error reducing item quantity.");
             } else {
                 for (ShoppingCartLineItem item : shoppingCart) {
-                    System.out.println("SKU in shoppingcart: " + item.getSKU());
                     if (item.getSKU().equals(SKU)) {
-                        System.out.println("item quantity: " + item.getQuantity());
                         if (item.getQuantity() > 1) {
-                            System.out.println("quantity > 1: " + item.getQuantity());
                             item.setQuantity(item.getQuantity() - 1);
                         } else {
-                            System.out.println("quantity <= 1: " + item.getQuantity());
                             response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error. Quantity cannot be less than 1.");
                             return;
                         }

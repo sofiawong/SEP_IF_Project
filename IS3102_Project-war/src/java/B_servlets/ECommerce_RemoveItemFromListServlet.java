@@ -1,5 +1,4 @@
 package B_servlets;
-//<!--###-->
 import HelperClasses.ShoppingCartLineItem;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +30,6 @@ public class ECommerce_RemoveItemFromListServlet extends HttpServlet {
                 }
             }
 
-            //MemberEntity member = accountManagementBean.getMemberByEmail(email);
             String[] deleteArr = request.getParameterValues("delete");
             HttpSession session = request.getSession();
 

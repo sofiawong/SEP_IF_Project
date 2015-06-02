@@ -62,7 +62,6 @@ public class ECommerce_StockAvailability extends HttpServlet {
             System.out.println("getQuantity() SKU: " + SKU);
             Client client = ClientBuilder.newClient();
             WebTarget target = client
-                    //.target("http://localhost:8080/IS3102_MobileWS/webresources/entity.storeentity")
                     .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.storeentity")
                     .path("getQuantity")
                     .queryParam("storeID", storeID)

@@ -33,7 +33,6 @@ public class ECommerce_FurnitureCategoryServlet extends HttpServlet {
             Long countryID = (Long) session.getAttribute("countryID");
 
             List<Furniture> furniture = retrieveFurnitureByCategoryRESTful(countryID, category);
-            //   session.setAttribute("furnitures", furnitures);
             session.setAttribute("furnitures", furniture);
             URLprefix = (String) session.getAttribute("URLprefix");
             String categoryEncoded = URLEncoder.encode(category);
@@ -44,13 +43,9 @@ public class ECommerce_FurnitureCategoryServlet extends HttpServlet {
             }
             if (furniture == null) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded + "&errorMsg=No furniture to be displayed.");
-               // RequestDispatcher rd = request.getRequestDispatcher("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded + "&errorMsg=No furniture to be displayed.");
-                // rd.forward(request, response);
                 return;
             }
             response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded);
-            //RequestDispatcher rd = request.getRequestDispatcher("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded);
-            //rd.forward(request, response);
         } catch (Exception ex) {
             out.println("\n\n " + ex.getMessage());
         }
@@ -59,7 +54,6 @@ public class ECommerce_FurnitureCategoryServlet extends HttpServlet {
     public List<Furniture> retrieveFurnitureByCategoryRESTful(Long countryID, String category) {
         Client client = ClientBuilder.newClient();
         WebTarget target = client
-                //.target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.furnitureentity")
                 .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.furnitureentity").path("getFurnitureListByCategory")
                 .queryParam("countryID", countryID)
                 .queryParam("category", category);
