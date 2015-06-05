@@ -1,14 +1,13 @@
-
 package HelperClasses;
 
 import java.util.ArrayList;
 
 public class Member {
+
     private Long id;
     private String name;
     private String email;
     private Integer loyaltyPoints;
-    private ArrayList<String> wishList;
     private Double cumulativeSpending;
     private String phone;
     private String address;
@@ -81,8 +80,6 @@ public class Member {
     public void setIncome(Integer income) {
         this.income = income;
     }
-    
-    
 
     public String getName() {
         return name;
@@ -108,14 +105,6 @@ public class Member {
         this.loyaltyPoints = loyaltyPoints;
     }
 
-    public ArrayList<String> getWishList() {
-        return wishList;
-    }
-
-    public void setWishList(ArrayList<String> wishList) {
-        this.wishList = wishList;
-    }
-
     public Double getCumulativeSpending() {
         return cumulativeSpending;
     }
@@ -123,6 +112,5 @@ public class Member {
     public void setCumulativeSpending(Double cumulativeSpending) {
         this.cumulativeSpending = cumulativeSpending;
     }
-    
-    
+
 }

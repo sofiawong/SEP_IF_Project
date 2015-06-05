@@ -164,8 +164,8 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="get-started">
-                                    <a href="allFurnitureProducts.jsp" class="btn btn-lg btn-primary">Get Started Now!</a>
-                                    <div class="learn-more">or <a href="allFurnitureProducts.jsp">learn more.</a></div>
+                                    <a href="#" class="btn btn-lg btn-primary">Get Started Now!</a>
+                                    <div class="learn-more">or <a href="#">learn more.</a></div>
                                 </div>
                             </div>
                         </div>

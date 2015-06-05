@@ -51,20 +51,21 @@ public class ECommerce_GetMember extends HttpServlet {
     }
 
     public Member getMember(String email) {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client
-                .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.memberentity").path("getMember")
-                .queryParam("email", email);
-        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-        Response response = invocationBuilder.get();
-        System.out.println("status: " + response.getStatus());
-
-        if (response.getStatus() != 200) {
-            return null;
-        }
-
-        Member member = response.readEntity(Member.class);
-        return member;
+//        Client client = ClientBuilder.newClient();
+//        WebTarget target = client
+//                .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/entity.memberentity").path("getMember")
+//                .queryParam("email", email);
+//        Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+//        Response response = invocationBuilder.get();
+//        System.out.println("status: " + response.getStatus());
+//
+//        if (response.getStatus() != 200) {
+//            return null;
+//        }
+//
+//        Member member = response.readEntity(Member.class);
+//        return member;
+        return null;
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

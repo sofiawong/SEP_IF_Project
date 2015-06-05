@@ -77,23 +77,15 @@
                                         <h4>Personal Information</h4>
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input class="form-control" required="true" name="name" type="text" value="<%if (member.getName() == null) {
-                                                    out.println("");
-                                                } else {
-                                                    out.println(member.getName());
-                                                }%>">
+                                            <input class="form-control" required="true" name="name" type="text" value="">
                                         </div>
                                         <div class="form-group">
                                             <label>E-mail Address</label>
-                                            <input class="form-control" required="true" value="<%=member.getEmail()%>" disabled/>
+                                            <input class="form-control" required="true" value="" disabled/>
                                         </div>
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input class="form-control" required="true" type="text" name="phone" value="<%if (member.getPhone() == null) {
-                                                    out.println("");
-                                                } else {
-                                                    out.println(member.getPhone());
-                                                }%>">
+                                            <input class="form-control" required="true" type="text" name="phone" value="">
                                         </div>
                                         <div class="form-group">
                                             <label>Country</label>
@@ -355,11 +347,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Address</label>
-                                            <input class="form-control" type="text" required="true" name="address" value="<%if (member.getAddress() == null) {
-                                                    out.println("");
-                                                } else {
-                                                    out.println(member.getAddress());
-                                                }%>">
+                                            <input class="form-control" type="text" required="true" name="address" value="">
                                         </div>
                                         <div class="form-group">
                                             <label>Set Challenge Question</label>
@@ -388,11 +376,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Age</label>
-                                            <input class="form-control" name="age" step="1" type="number" min="1" max="150" value="<%=member.getAge()%>">
+                                            <input class="form-control" name="age" step="1" type="number" min="1" max="150" value="">
                                         </div>
                                         <div class="form-group">
                                             <label>Income per annum (in USD)</label>
-                                            <input class="form-control" name="income" step="1" type="number" min="0" max="2147483646" value="<%=member.getIncome()%>">
+                                            <input class="form-control" name="income" step="1" type="number" min="0" max="2147483646" value="">
                                         </div>
                                         <div class="form-group">
                                             <input type="checkbox" name="serviceLevelAgreement"> Allow us to use your particulars to serve you better?<br/>Checking the box above indicates that you agree to our <a onclick="pdpaWindow()">personal data protection policy.</a>
@@ -417,107 +405,6 @@
                                             </div>
                                         </div>
                                     </form>
-                                </div>
-                                <div id="loyaltyProgram" class="tab-pane">
-                                    <h4>My Loyalty Rewards</h4>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h2 class="short">Loyalty Tiers</h2>
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    Tier :  <br/>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style=" color:black; background-color: #cccccc;" >
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <h2 class="short">My Loyalty Points</h2>
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            Current Tier :  <br/>
-                                                            Next Tier : 
-                                                            <br/><br/>
-
-                                                            My Points Balance: <%=member.getLoyaltyPoints()%><br/>
-                                                            My Cumulative Spending :  <%=df.format(member.getCumulativeSpending().doubleValue())%> USD
-
-                                                            <div class="progress">
-                                                                <div class="progress-bar progress-bar-success" style="border-bottom-right-radius: 0px;border-top-right-radius: 0px; width: ">
-                                                                    <%=df.format(member.getCumulativeSpending().doubleValue())%>
-                                                                </div>
-                                                                <div class="progress-bar progress-bar-warning progress-bar-striped" style="border-bottom-left-radius: 0px; border-top-left-radius: 0px; width:">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="salesHistory" class="tab-pane" onclick="">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h4>My Sales Records</h4>
-                                            <table class="table table-hover">
-                                                <thead>
-                                                <td>
-                                                    Receipt No
-                                                </td>
-                                                <td>
-                                                    Currency
-                                                </td>
-                                                <td>
-                                                    Amount Due
-                                                </td>
-                                                <td>
-                                                    Amount Paid
-                                                </td>
-                                                <td>
-                                                    Amount Paid Using Points
-                                                </td>
-                                                <td>
-                                                    Created Date
-                                                </td>
-                                                <td>
-                                                    Loyalty Points Deducted
-                                                </td>
-                                                <td>
-                                                    Items Purchased
-                                                </td>
-                                                </thead>
-                                                <tr>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td> 
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
