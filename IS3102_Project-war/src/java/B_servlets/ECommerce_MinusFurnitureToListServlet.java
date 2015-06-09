@@ -15,17 +15,6 @@ public class ECommerce_MinusFurnitureToListServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         System.out.println("ECommerce_MinusFurnitureToListServlet");
         try {
-            Cookie[] cookies = request.getCookies();
-            String email = "";
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("memberId")) {
-                        System.out.println("Cookie value : " + cookie.getValue());
-                        email = cookie.getValue();
-                    }
-                }
-            }
-
             HttpSession session = request.getSession();
             URLprefix = (String) session.getAttribute("URLprefix");
             if (URLprefix == null) {
@@ -36,20 +25,21 @@ public class ECommerce_MinusFurnitureToListServlet extends HttpServlet {
             ArrayList<ShoppingCartLineItem> shoppingCart = (ArrayList<ShoppingCartLineItem>) session.getAttribute("shoppingCart");
             if (shoppingCart == null) {
                 response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error reducing item quantity.");
-            } else {
-                for (ShoppingCartLineItem item : shoppingCart) {
-                    if (item.getSKU().equals(SKU)) {
-                        if (item.getQuantity() > 1) {
-                            item.setQuantity(item.getQuantity() - 1);
-                        } else {
-                            response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error. Quantity cannot be less than 1.");
-                            return;
-                        }
-                        break;
-                    }
-
-                }
-            }
+            } 
+//                else {
+//                for (ShoppingCartLineItem item : shoppingCart) {
+//                    if (item.getSKU().equals(SKU)) {
+//                        if (item.getQuantity() > 1) {
+//                            item.setQuantity(item.getQuantity() - 1);
+//                        } else {
+//                            response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error. Quantity cannot be less than 1.");
+//                            return;
+//                        }
+//                        break;
+//                    }
+//
+//                }
+//            }
             session.setAttribute("shoppingCart", shoppingCart);
             response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?goodMsg=Item quantity reduced successfully!");
 

@@ -538,10 +538,6 @@
         <servlet-class>B_servlets.ECommerce_StoresServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ECommerce_WishListServlet</servlet-name>
-        <servlet-class>B_servlets.ECommerce_WishListServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ECommerce_AllRetailProductsServlet</servlet-name>
         <servlet-class>B_servlets.ECommerce_AllRetailProductsServlet</servlet-class>
     </servlet>
@@ -1668,10 +1664,6 @@
     <servlet-mapping>
         <servlet-name>ECommerce_AllRetailProductsServlet</servlet-name>
         <url-pattern>/ECommerce_AllRetailProductsServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ECommerce_WishListServlet</servlet-name>
-        <url-pattern>/ECommerce_WishListServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>A1/AccessRight_edit</servlet-name>

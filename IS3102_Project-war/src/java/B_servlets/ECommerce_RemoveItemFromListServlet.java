@@ -16,20 +16,8 @@ public class ECommerce_RemoveItemFromListServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        System.out.println("ECommerce_AddFurnitureToListServlet");
+        System.out.println("ECommerce_RemoveItemFromListServlet");
         try {
-            Cookie[] cookies = request.getCookies();
-            String email = "";
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("memberId")) {
-                        System.out.println("Cookie value : " + cookie.getValue());
-                        email = cookie.getValue();
-                    }
-                }
-            }
-
             String[] deleteArr = request.getParameterValues("delete");
             HttpSession session = request.getSession();
 
@@ -37,19 +25,19 @@ public class ECommerce_RemoveItemFromListServlet extends HttpServlet {
             if (URLprefix == null) {
                 response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
             }
-
-            List<ShoppingCartLineItem> shoppingCart = (List<ShoppingCartLineItem>) session.getAttribute("shoppingCart");
-            if (deleteArr != null) {
-                for (int i = 0; i < deleteArr.length; i++) {
-                    ShoppingCartLineItem li = new ShoppingCartLineItem();
-                    li.setSKU(deleteArr[i]);
-                    shoppingCart.remove(li);
-                }
-                session.setAttribute("shoppingCart", shoppingCart);
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?goodMsg=Successfully removed: " + deleteArr.length + " record(s).");
-            } else {
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Nothing selected.");
-            }
+//
+//            List<ShoppingCartLineItem> shoppingCart = (List<ShoppingCartLineItem>) session.getAttribute("shoppingCart");
+//            if (deleteArr != null) {
+//                for (int i = 0; i < deleteArr.length; i++) {
+//                    ShoppingCartLineItem li = new ShoppingCartLineItem();
+//                    li.setSKU(deleteArr[i]);
+//                    shoppingCart.remove(li);
+//                }
+//                session.setAttribute("shoppingCart", shoppingCart);
+//                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?goodMsg=Successfully removed: " + deleteArr.length + " record(s).");
+//            } else {
+//                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Nothing selected.");
+//            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

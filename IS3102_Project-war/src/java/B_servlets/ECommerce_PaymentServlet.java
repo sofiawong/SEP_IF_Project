@@ -37,31 +37,31 @@ public class ECommerce_PaymentServlet extends HttpServlet {
 
             ArrayList<ShoppingCartLineItem> shoppingCart = (ArrayList<ShoppingCartLineItem>) session.getAttribute("shoppingCart");
 
-            double amountPaid = 0.0;
-            for (ShoppingCartLineItem item : shoppingCart) {
-                amountPaid += item.getPrice() * item.getQuantity();
-            }
-            String salesRecordID = createECommerceTransactionRecord(memberId, amountPaid, countryID);
-            if (salesRecordID.equals("0")) {
-                //error
-                System.out.println("Error creating ECommerce Transaction Record. Sales record ID returned 0.");
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error processing transaction.");
-
-                return;
-            }
-            for (ShoppingCartLineItem item : shoppingCart) {
-                String itemID = item.getId();
-                int quantity = item.getQuantity();
-                //call ws to insert lineitem and salesrecordentity_lineitementity based on salesRecordID and lineItemID
-                String result = createECommerceLineItemRecord(salesRecordID, itemID, quantity, countryID);
-                if (!result.equals("0")) {
-                    System.out.println("createECommerceLineItemRecord successful");
-                } else {
-                    System.out.println("Error creating createECommerceLineItemRecord, returned 0.");
-                    response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error checking out.");
-                    return;
-                }
-            }
+//            double amountPaid = 0.0;
+//            for (ShoppingCartLineItem item : shoppingCart) {
+//                amountPaid += item.getPrice() * item.getQuantity();
+//            }
+//            String salesRecordID = createECommerceTransactionRecord(memberId, amountPaid, countryID);
+//            if (salesRecordID.equals("0")) {
+//                //error
+//                System.out.println("Error creating ECommerce Transaction Record. Sales record ID returned 0.");
+//                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error processing transaction.");
+//
+//                return;
+//            }
+//            for (ShoppingCartLineItem item : shoppingCart) {
+//                String itemID = item.getId();
+//                int quantity = item.getQuantity();
+//                //call ws to insert lineitem and salesrecordentity_lineitementity based on salesRecordID and lineItemID
+//                String result = createECommerceLineItemRecord(salesRecordID, itemID, quantity, countryID);
+//                if (!result.equals("0")) {
+//                    System.out.println("createECommerceLineItemRecord successful");
+//                } else {
+//                    System.out.println("Error creating createECommerceLineItemRecord, returned 0.");
+//                    response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "shoppingCart.jsp?errMsg=Error checking out.");
+//                    return;
+//                }
+//            }
 
             session.setAttribute("shoppingCart", null);
 
@@ -74,54 +74,56 @@ public class ECommerce_PaymentServlet extends HttpServlet {
     }
 
     public String createECommerceLineItemRecord(String salesRecordID, String itemID, int quantity, Long countryID) {
-        try {
-            Client client = ClientBuilder.newClient();
-            WebTarget target = client
-                    .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/commerce")
-                    .path("createECommerceLineItemRecord")
-                    .queryParam("salesRecordID", salesRecordID)
-                    .queryParam("itemID", itemID)
-                    .queryParam("quantity", quantity)
-                    .queryParam("countryID", countryID);
-
-            Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-            Response response = invocationBuilder.put(Entity.entity("", "application/json"));
-            if (response.getStatus() != 201) {
-                return "0";
-            }
-            String path = response.getLocation().getPath();
-            String result = path.substring(path.indexOf('=') + 1);
-            return result + "";
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "0";
-        }
+//        try {
+//            Client client = ClientBuilder.newClient();
+//            WebTarget target = client
+//                    .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/commerce")
+//                    .path("createECommerceLineItemRecord")
+//                    .queryParam("salesRecordID", salesRecordID)
+//                    .queryParam("itemID", itemID)
+//                    .queryParam("quantity", quantity)
+//                    .queryParam("countryID", countryID);
+//
+//            Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+//            Response response = invocationBuilder.put(Entity.entity("", "application/json"));
+//            if (response.getStatus() != 201) {
+//                return "0";
+//            }
+//            String path = response.getLocation().getPath();
+//            String result = path.substring(path.indexOf('=') + 1);
+//            return result + "";
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "0";
+//        }
+        return null;
     }
 
     public String createECommerceTransactionRecord(Long memberId, Double amountPaid, Long countryId) {
-        try {
-            Client client = ClientBuilder.newClient();
-            WebTarget target = client
-                    .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/commerce")
-                    .path("createECommerceTransactionRecord")
-                    .queryParam("memberID", memberId)
-                    .queryParam("amountPaid", amountPaid)
-                    .queryParam("countryID", countryId);
-
-            Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
-            Response response = invocationBuilder.put(Entity.entity("", "application/json"));
-            if (response.getStatus() != 201) {
-                return "0";
-            }
-            String path = response.getLocation().getPath();
-            String result = path.substring(path.indexOf('=') + 1);
-            return result + "";
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "0";
-        }
+//        try {
+//            Client client = ClientBuilder.newClient();
+//            WebTarget target = client
+//                    .target("http://dmit.bulletplus.com/WebService_Mobile/webresources/commerce")
+//                    .path("createECommerceTransactionRecord")
+//                    .queryParam("memberID", memberId)
+//                    .queryParam("amountPaid", amountPaid)
+//                    .queryParam("countryID", countryId);
+//
+//            Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
+//            Response response = invocationBuilder.put(Entity.entity("", "application/json"));
+//            if (response.getStatus() != 201) {
+//                return "0";
+//            }
+//            String path = response.getLocation().getPath();
+//            String result = path.substring(path.indexOf('=') + 1);
+//            return result + "";
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "0";
+//        }
+        return null;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
