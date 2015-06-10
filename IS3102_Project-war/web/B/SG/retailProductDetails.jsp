@@ -42,7 +42,7 @@
                             <div class="col-md-6">
                                 <div>
                                     <div class="thumbnail">
-                                        <img alt="" class="img-responsive img-rounded" src="../../..<%/*insert code here*/%>">
+                                        <img alt="" class="img-responsive img-rounded" src="../../..<%/*insert imageURL*/%>">
                                     </div>
                                 </div>
                             </div>
