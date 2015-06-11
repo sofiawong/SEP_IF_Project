@@ -1,7 +1,6 @@
 package B_servlets;
 
 import CorporateManagement.ItemManagement.ItemManagementBeanLocal;
-import EntityManager.FurnitureEntity;
 import EntityManager.RetailProductEntity;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,10 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-/**
- *
- * @author yang
- */
 public class ECommerce_RetailProductsServlet extends HttpServlet {
 
     @EJB
@@ -30,15 +25,11 @@ public class ECommerce_RetailProductsServlet extends HttpServlet {
 
             HttpSession session;
             session = request.getSession();
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-            }
             
             List<RetailProductEntity> retailProducts = itemManagementBean.listAllRetailProduct();
             session.setAttribute("retailProducts", retailProducts);
             
-            response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "retailProducts.jsp");
+            response.sendRedirect("/IS3102_Project-war/B/SG/retailProducts.jsp");
             
         } catch (Exception ex) {
             out.println("\n\n " + ex.getMessage());

@@ -12,11 +12,6 @@
     <jsp:include page="header.html" />
     <body>
         <%
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-            }
-            out.print("<input type='hidden' id='urlprefix' value='" + URLprefix + "'>");
             double finalPrice = 0.0;
         %>
         <script>
@@ -34,7 +29,7 @@
                 }
                 if (checkboxes.length == 0 || numOfTicks == 0) {
                     window.event.returnValue = true;
-                    document.shoppingCart.action = "/IS3102_Project-war/B/" + $("#urlprefix").val() + "shoppingCart.jsp?errMsg=No item(s) selected for deletion.";
+                    document.shoppingCart.action = "/IS3102_Project-war/B/SG/shoppingCart.jsp?errMsg=No item(s) selected for deletion.";
                     document.shoppingCart.submit();
                 } else {
                     window.event.returnValue = true;

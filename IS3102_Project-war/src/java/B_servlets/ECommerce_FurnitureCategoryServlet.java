@@ -21,8 +21,6 @@ import javax.ws.rs.core.Response;
 
 public class ECommerce_FurnitureCategoryServlet extends HttpServlet {
 
-    String URLprefix = null;
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -34,18 +32,13 @@ public class ECommerce_FurnitureCategoryServlet extends HttpServlet {
 
             List<Furniture> furniture = retrieveFurnitureByCategoryRESTful(countryID, category);
             session.setAttribute("furnitures", furniture);
-            URLprefix = (String) session.getAttribute("URLprefix");
             String categoryEncoded = URLEncoder.encode(category);
 
-            if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-                return;
-            }
             if (furniture == null) {
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded + "&errorMsg=No furniture to be displayed.");
+                response.sendRedirect("/IS3102_Project-war/B/SG/furnitureCategory.jsp?cat=" + categoryEncoded + "&errorMsg=No furniture to be displayed.");
                 return;
             }
-            response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureCategory.jsp?cat=" + categoryEncoded);
+            response.sendRedirect("/IS3102_Project-war/B/SG/furnitureCategory.jsp?cat=" + categoryEncoded);
         } catch (Exception ex) {
             out.println("\n\n " + ex.getMessage());
         }

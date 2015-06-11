@@ -26,19 +26,13 @@ public class ECommerce_ContactUsServlet extends HttpServlet {
             String email = request.getParameter("email");
             String name = request.getParameter("name");
 
-            HttpSession session;
-            session = request.getSession();
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-            }
             boolean canCreate = eCommerceBean.addFeedback(subject, name, email, message);
             if (canCreate) {
                 result = "Your message has been submitted successfully. Thank you for contacting us.";
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "contactUs.jsp?goodMsg=" + result);
+                response.sendRedirect("/IS3102_Project-war/B/SG/contactUs.jsp?goodMsg=" + result);
             } else {
                 result = "Submission failed. Please try again";
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "contactUs.jsp?errMsg=" + result);
+                response.sendRedirect("/IS3102_Project-war/B/SG/contactUs.jsp?errMsg=" + result);
             }
         } catch (Exception ex) {
             out.println(ex);

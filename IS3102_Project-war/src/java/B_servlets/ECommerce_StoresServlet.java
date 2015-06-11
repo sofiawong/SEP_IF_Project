@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package B_servlets;
 
 import CorporateManagement.FacilityManagement.FacilityManagementBeanLocal;
@@ -18,33 +12,25 @@ import javax.ejb.EJB;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- *
- * @author yang
- */
 public class ECommerce_StoresServlet extends HttpServlet {
 
     @EJB
     private FacilityManagementBeanLocal faciltyManagementBean;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PrintWriter out = response.getWriter();
         try {
-            
+
             HttpSession session;
             session = request.getSession();
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-            }
-            
+
             List<StoreEntity> stores = faciltyManagementBean.viewListOfStore();
             session.setAttribute("stores", stores);
 
-            response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "storeLocation.jsp");
+            response.sendRedirect("/IS3102_Project-war/B/SG/storeLocation.jsp");
         } catch (Exception ex) {
             ex.printStackTrace();
         }

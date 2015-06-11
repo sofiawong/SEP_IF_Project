@@ -7,15 +7,12 @@ package B_servlets;
 
 import CommonInfrastructure.AccountManagement.AccountManagementBeanLocal;
 import CommonInfrastructure.SystemSecurity.SystemSecurityBeanLocal;
-import EntityManager.StaffEntity;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class ECommerce_ResetPasswordServlet extends HttpServlet {
 
@@ -29,13 +26,6 @@ public class ECommerce_ResetPasswordServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            HttpSession session;
-            session = request.getSession();
-
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                URLprefix="";
-            }
             String email = request.getParameter("email");
             String resetCode = request.getParameter("resetCode");
             String password = request.getParameter("password");
@@ -43,21 +33,15 @@ public class ECommerce_ResetPasswordServlet extends HttpServlet {
             if (systemSecurityBean.validatePasswordResetForMember(email, resetCode)) {
                 accountManagementBean.resetMemberPassword(email, password);
                 result = "?goodMsg=Reset Password Successful. Please login with your new password.";
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "memberLogin.jsp" + result);
+                response.sendRedirect("/IS3102_Project-war/B/SG/memberLogin.jsp" + result);
             } else {
                 result = "?errMsg=Reset Password Unsuccessful. Please try again or contact support.";
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "memberResetPassword.jsp" + result);
+                response.sendRedirect("/IS3102_Project-war/B/SG/memberResetPassword.jsp" + result);
             }
 
         } catch (Exception ex) {
-            HttpSession session;
-            session = request.getSession();
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                URLprefix = "";
-            }
             result = "An error has occured, plese try again or contact support for assistance.";
-            response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "memberResetPassword.jsp" + result);
+            response.sendRedirect("/IS3102_Project-war/B/SG/memberResetPassword.jsp" + result);
             ex.printStackTrace();
         }
     }

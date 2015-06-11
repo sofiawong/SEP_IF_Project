@@ -3,9 +3,9 @@
 <!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
 <!--[if gt IE 9]><!-->	
 <jsp:include page="checkCountry.jsp" />
-<%String URLprefix = (String) session.getAttribute("URLprefix");
-    if (this.getClass().getSimpleName().replaceAll("_", ".").equals("index.jsp") && URLprefix != null && URLprefix != "") {
-        response.sendRedirect("../B/" + URLprefix + "index.jsp");
+<%
+    if (this.getClass().getSimpleName().replaceAll("_", ".").equals("index.jsp")) {
+        response.sendRedirect("../B/SG/index.jsp");
     }%>
 <html> <!--<![endif]-->
     <jsp:include page="header.html" />

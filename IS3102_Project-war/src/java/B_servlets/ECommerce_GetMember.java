@@ -23,7 +23,6 @@ public class ECommerce_GetMember extends HttpServlet {
 
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("memberEmail");
-        String URLprefix = (String) session.getAttribute("URLprefix");
         String location = "";
         String errMsg = request.getParameter("errMsg");
         String goodMsg = request.getParameter("goodMsg");
@@ -31,21 +30,21 @@ public class ECommerce_GetMember extends HttpServlet {
             Member member = getMember(email);
             if (member == null) {
                 result = "Error retrieving member details. Please login again.";
-                location = "/IS3102_Project-war/B/" + URLprefix + "memberLogin.jsp?errMsg=" + result;
+                location = "/IS3102_Project-war/B/SG/memberLogin.jsp?errMsg=" + result;
             } else {
                 session.setAttribute("member", member);
                 session.setAttribute("memberName", member.getName());
                 if (errMsg != null) {
-                    location = "/IS3102_Project-war/B/" + URLprefix + "memberProfile.jsp?errMsg=" + errMsg;
+                    location = "/IS3102_Project-war/B/SG/memberProfile.jsp?errMsg=" + errMsg;
                 } else if (goodMsg != null) {
-                    location = "/IS3102_Project-war/B/" + URLprefix + "memberProfile.jsp?goodMsg=" + goodMsg;
+                    location = "/IS3102_Project-war/B/SG/memberProfile.jsp?goodMsg=" + goodMsg;
                 } else {
-                    location = "/IS3102_Project-war/B/" + URLprefix + "memberProfile.jsp";
+                    location = "/IS3102_Project-war/B/SG/memberProfile.jsp";
                 }
             }
         } catch (Exception ex) {
             result = "Error retrieving member details. Please login again.";
-            location = "/IS3102_Project-war/B/" + URLprefix + "memberLogin.jsp?errMsg=" + result;
+            location = "/IS3102_Project-war/B/SG/memberLogin.jsp?errMsg=" + result;
         }
         response.sendRedirect(location);
     }

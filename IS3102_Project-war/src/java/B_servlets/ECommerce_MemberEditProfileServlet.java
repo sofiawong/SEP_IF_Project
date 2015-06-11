@@ -48,11 +48,6 @@ public class ECommerce_MemberEditProfileServlet extends HttpServlet {
                 income = Integer.parseInt(incomeString);
             }
             result = editMember(email, name, phone, country, address, Integer.parseInt(securityQuestion), securityAnswer, age, income, password);
-            HttpSession session = request.getSession();
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                URLprefix = "";
-            }
             if (result) {
                 response.sendRedirect("ECommerce_GetMember?goodMsg=Account updated successfully.");
             } else {

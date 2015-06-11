@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
@@ -21,34 +20,29 @@ public class ECommerce_StockAvailability extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            HttpSession session = request.getSession();
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-            }
             String storeIDstring = request.getParameter("storeID");
             String SKU = request.getParameter("sku");
             String type = request.getParameter("type");
 
             //<editor-fold defaultstate="collapsed" desc="check storeID and SKU validity">
             if ((storeIDstring == null || storeIDstring.equals("")) && (SKU == null || SKU.equals(""))) {
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "index.jsp");
+                response.sendRedirect("/IS3102_Project-war/B/SG/index.jsp");
             } else if (storeIDstring == null || storeIDstring.equals("")) {
                 if (type.equals("Furniture")) {
-                    response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureProductDetails.jsp?sku=" + SKU);
+                    response.sendRedirect("/IS3102_Project-war/B/SG/furnitureProductDetails.jsp?sku=" + SKU);
                 } else if (type.equals("Retail Product")) {
-                    response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "retailProductDetails.jsp?sku=" + SKU);
+                    response.sendRedirect("/IS3102_Project-war/B/SG/retailProductDetails.jsp?sku=" + SKU);
                 }
             }
             //</editor-fold>
-            
+
             Long storeID = Long.parseLong(storeIDstring);
             int itemQty = getQuantity(storeID, SKU);
 
             if (type.equals("Furniture")) {
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "furnitureProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeID);
+                response.sendRedirect("/IS3102_Project-war/B/SG/furnitureProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeID);
             } else if (type.equals("Retail Product")) {
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "retailProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeID);
+                response.sendRedirect("/IS3102_Project-war/B/SG/retailProductDetails.jsp?sku=" + SKU + "&itemQty=" + itemQty + "&storeID=" + storeID);
             }
 
         } catch (Exception ex) {

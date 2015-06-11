@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ejb.EJB;
-import javax.servlet.http.HttpSession;
 
 public class ECommerce_NewsletterSubscribeServlet extends HttpServlet {
 
@@ -22,18 +21,15 @@ public class ECommerce_NewsletterSubscribeServlet extends HttpServlet {
         System.out.println("ECommerce_NewsletterSubscribeServlet");
 
         try {
-            HttpSession session;
-            session = request.getSession();
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-            }
             String email = request.getParameter("email");
             System.out.println(email);
-
             Boolean test = ecb.addEmailToSubscription(email);
 
-            response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "index.jsp");
+            if (test) {
+                response.sendRedirect("/IS3102_Project-war/B/SG/index.jsp?goodMsg=Subcription added successfully!");
+            } else {
+                response.sendRedirect("/IS3102_Project-war/B/SG/index.jsp");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }

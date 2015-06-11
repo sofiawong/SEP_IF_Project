@@ -29,11 +29,7 @@ public class ECommerce_AllRetailProductsServlet extends HttpServlet {
             List<RetailProduct> retailProducts = getRetailProductListRESTful(countryID);
             session.setAttribute("retailProducts", retailProducts);
 
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                response.sendRedirect("/IS3102_Project-war/B/selectCountry.jsp");
-            }
-            response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "allRetailProducts.jsp");
+            response.sendRedirect("/IS3102_Project-war/B/SG/allRetailProducts.jsp");
         } catch (Exception ex) {
             out.println("\n\n " + ex.getMessage());
         }

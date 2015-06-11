@@ -1,9 +1,5 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="EntityManager.MemberEntity"%>
-<%String URLprefix = (String) session.getAttribute("URLprefix");
-    if (URLprefix == null) {
-        URLprefix = "";
-    }%>
 <header id="header">
     <div class="container">
         <h1 class="logo">

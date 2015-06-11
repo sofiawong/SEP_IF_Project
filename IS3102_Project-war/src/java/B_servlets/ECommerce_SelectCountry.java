@@ -43,36 +43,6 @@ public class ECommerce_SelectCountry extends HttpServlet {
             session.setAttribute("countryID", countryID);
             session.setAttribute("countryName", country);
             session.setAttribute("storesInCountry", storesInCountry);
-            switch (country) {
-                case "France":
-                    session.setAttribute("URLprefix", "FRA/");
-                    response.sendRedirect("/IS3102_Project-war/B/FRA/index.jsp");
-                    break;
-                case "United States":
-                    session.setAttribute("URLprefix", "USA/");
-                    response.sendRedirect("/IS3102_Project-war/B/USA/index.jsp");
-                    break;
-                case "China":
-                    session.setAttribute("URLprefix", "CN/");
-                    response.sendRedirect("/IS3102_Project-war/B/CN/index.jsp");
-                    break;
-                case "Singapore":
-                    session.setAttribute("URLprefix", "SG/");
-                    response.sendRedirect("/IS3102_Project-war/B/SG/index.jsp");
-                    break;
-                case "Malaysia":
-                    session.setAttribute("URLprefix", "MY/");
-                    response.sendRedirect("/IS3102_Project-war/B/MY/index.jsp");
-                    break;
-                case "Indonesia":
-                    session.setAttribute("URLprefix", "IDN/");
-                    response.sendRedirect("/IS3102_Project-war/B/IDN/index.jsp");
-                    break;
-                default:
-                    session.setAttribute("URLprefix", "");
-                    response.sendRedirect("/IS3102_Project-war/B/index.jsp");
-                    break;
-            }
 
         } catch (Exception ex) {
             out.println(ex);

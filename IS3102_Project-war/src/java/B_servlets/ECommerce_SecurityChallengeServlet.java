@@ -1,10 +1,8 @@
 package B_servlets;
 
 import CommonInfrastructure.AccountManagement.AccountManagementBeanLocal;
-import CommonInfrastructure.SystemSecurity.SystemSecurityBeanLocal;
 import EntityManager.MemberEntity;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpSession;
 
 public class ECommerce_SecurityChallengeServlet extends HttpServlet {
 
-    @EJB
-    private SystemSecurityBeanLocal systemSecurityBean;
     private String result;
     @EJB
     private AccountManagementBeanLocal accountManagementBean;
@@ -26,20 +22,16 @@ public class ECommerce_SecurityChallengeServlet extends HttpServlet {
         try {
             HttpSession session;
             session = request.getSession();
-            String URLprefix = (String) session.getAttribute("URLprefix");
-            if (URLprefix == null) {
-                URLprefix="";
-            }
             String email = request.getParameter("email");
 
             boolean ifExist = accountManagementBean.checkMemberEmailExists(email);
             if (ifExist) {                
                 MemberEntity member = accountManagementBean.getMemberByEmail(email);
                 session.setAttribute("memberForgetPassword", member);
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "forgotPasswordSecurity.jsp?email=" +email);
+                response.sendRedirect("/IS3102_Project-war/B/SG/forgotPasswordSecurity.jsp?email=" +email);
             } else {
                 result = "?errMsg=Account does not exist.";
-                response.sendRedirect("/IS3102_Project-war/B/" + URLprefix + "forgotPassword.jsp" + result);
+                response.sendRedirect("/IS3102_Project-war/B/SG/forgotPassword.jsp" + result);
             }
         } catch (Exception ex) {
             System.out.println(ex);

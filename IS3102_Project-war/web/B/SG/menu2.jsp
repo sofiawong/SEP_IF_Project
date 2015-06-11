@@ -1,9 +1,5 @@
 <%@page import="HelperClasses.Member"%>
 <%@page import="java.net.URLEncoder"%>
-<%String URLprefix = (String) session.getAttribute("URLprefix");
-    if (URLprefix == null) {
-        URLprefix = "";
-    }%>
 <header id="header">
     <div class="container">
         <h1 class="logo">
@@ -43,7 +39,6 @@
                     <a href="../../ECommerce_StoresServlet"><i class="icon icon-map-marker"></i>Store Location</a>
                 </li>
                 <li>
-                    <!--###-->
                     <a href="shoppingCart.jsp"><i class="icon icon-shopping-cart"></i>Shopping Cart</a>
                 </li>
                 <li>
