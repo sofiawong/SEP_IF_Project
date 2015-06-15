@@ -43,7 +43,8 @@ public class ECommerce_SelectCountry extends HttpServlet {
             session.setAttribute("countryID", countryID);
             session.setAttribute("countryName", country);
             session.setAttribute("storesInCountry", storesInCountry);
-
+            session.setAttribute("URLprefix", "SG/");
+            response.sendRedirect("/IS3102_Project-war/B/SG/index.jsp");
         } catch (Exception ex) {
             out.println(ex);
             ex.printStackTrace();

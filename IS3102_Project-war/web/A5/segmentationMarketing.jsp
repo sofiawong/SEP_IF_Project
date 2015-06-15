@@ -45,31 +45,31 @@
             <%
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
  
-            Integer cummulativeSpendingAgeGrp1 = (Integer) session.getAttribute("cummulativeSpendingAgeGrp1");
-            Integer cummulativeSpendingAgeGrp2 = (Integer) session.getAttribute("cummulativeSpendingAgeGrp2");
-            Integer cummulativeSpendingAgeGrp3 = (Integer) session.getAttribute("cummulativeSpendingAgeGrp3");
-            Integer cummulativeSpendingAgeGrp4 = (Integer) session.getAttribute("cummulativeSpendingAgeGrp4");
+            Integer cumulativeSpendingAgeGrp1 = (Integer) session.getAttribute("cumulativeSpendingAgeGrp1");
+            Integer cumulativeSpendingAgeGrp2 = (Integer) session.getAttribute("cumulativeSpendingAgeGrp2");
+            Integer cumulativeSpendingAgeGrp3 = (Integer) session.getAttribute("cumulativeSpendingAgeGrp3");
+            Integer cumulativeSpendingAgeGrp4 = (Integer) session.getAttribute("cumulativeSpendingAgeGrp4");
 
             Integer numOfMembersInAgeGroup1 = (Integer) session.getAttribute("numOfMembersInAgeGroup1");
             Integer numOfMembersInAgeGroup2 = (Integer) session.getAttribute("numOfMembersInAgeGroup2");
             Integer numOfMembersInAgeGroup3 = (Integer) session.getAttribute("numOfMembersInAgeGroup3");
             Integer numOfMembersInAgeGroup4 = (Integer) session.getAttribute("numOfMembersInAgeGroup4");
 
-            List<Integer> cummulativeGroupAge = new ArrayList();
-            cummulativeGroupAge.add(cummulativeSpendingAgeGrp1 / numOfMembersInAgeGroup1);
-            cummulativeGroupAge.add(cummulativeSpendingAgeGrp2 / numOfMembersInAgeGroup2);
-            cummulativeGroupAge.add(cummulativeSpendingAgeGrp3 / numOfMembersInAgeGroup3);
-            cummulativeGroupAge.add(cummulativeSpendingAgeGrp4 / numOfMembersInAgeGroup4);
+            List<Integer> cumulativeGroupAge = new ArrayList();
+            cumulativeGroupAge.add(cumulativeSpendingAgeGrp1 / numOfMembersInAgeGroup1);
+            cumulativeGroupAge.add(cumulativeSpendingAgeGrp2 / numOfMembersInAgeGroup2);
+            cumulativeGroupAge.add(cumulativeSpendingAgeGrp3 / numOfMembersInAgeGroup3);
+            cumulativeGroupAge.add(cumulativeSpendingAgeGrp4 / numOfMembersInAgeGroup4);
 
             Integer ageGroup1Points = 1;
             Integer ageGroup2Points = 1;
             Integer ageGroup3Points = 1;
             Integer ageGroup4Points = 1;
 
-            for (int i = 0; i < cummulativeGroupAge.size(); i++) {
-                for (int j = 0; j < cummulativeGroupAge.size(); j++) {
+            for (int i = 0; i < cumulativeGroupAge.size(); i++) {
+                for (int j = 0; j < cumulativeGroupAge.size(); j++) {
                     if (!(i == j)) {
-                        if (cummulativeGroupAge.get(i) > cummulativeGroupAge.get(j)) {
+                        if (cumulativeGroupAge.get(i) > cumulativeGroupAge.get(j)) {
                             if (i == 0) {
                                 ageGroup1Points++;
                             } else if (i == 1) {
@@ -84,31 +84,31 @@
                 }
             }
    
-            Integer cummulativeSpendingIncomeGrp1 = (Integer) session.getAttribute("cummulativeSpendingIncomeGrp1");
-            Integer cummulativeSpendingIncomeGrp2 = (Integer) session.getAttribute("cummulativeSpendingIncomeGrp2");
-            Integer cummulativeSpendingIncomeGrp3 = (Integer) session.getAttribute("cummulativeSpendingIncomeGrp3");
-            Integer cummulativeSpendingIncomeGrp4 = (Integer) session.getAttribute("cummulativeSpendingIncomeGrp4");
+            Integer cumulativeSpendingIncomeGrp1 = (Integer) session.getAttribute("cumulativeSpendingIncomeGrp1");
+            Integer cumulativeSpendingIncomeGrp2 = (Integer) session.getAttribute("cumulativeSpendingIncomeGrp2");
+            Integer cumulativeSpendingIncomeGrp3 = (Integer) session.getAttribute("cumulativeSpendingIncomeGrp3");
+            Integer cumulativeSpendingIncomeGrp4 = (Integer) session.getAttribute("cumulativeSpendingIncomeGrp4");
 
             Integer numOfMembersInIncomeGroup1 = (Integer) session.getAttribute("numOfMembersInIncomeGroup1");
             Integer numOfMembersInIncomeGroup2 = (Integer) session.getAttribute("numOfMembersInIncomeGroup2");
             Integer numOfMembersInIncomeGroup3 = (Integer) session.getAttribute("numOfMembersInIncomeGroup3");
             Integer numOfMembersInIncomeGroup4 = (Integer) session.getAttribute("numOfMembersInIncomeGroup4");
 
-            List<Integer> cummulativeGroupIncome = new ArrayList();
-            cummulativeGroupIncome.add(cummulativeSpendingIncomeGrp1 / numOfMembersInIncomeGroup1);
-            cummulativeGroupIncome.add(cummulativeSpendingIncomeGrp2 / numOfMembersInIncomeGroup2);
-            cummulativeGroupIncome.add(cummulativeSpendingIncomeGrp3 / numOfMembersInIncomeGroup3);
-            cummulativeGroupIncome.add(cummulativeSpendingIncomeGrp4 / numOfMembersInIncomeGroup4);
+            List<Integer> cumulativeGroupIncome = new ArrayList();
+            cumulativeGroupIncome.add(cumulativeSpendingIncomeGrp1 / numOfMembersInIncomeGroup1);
+            cumulativeGroupIncome.add(cumulativeSpendingIncomeGrp2 / numOfMembersInIncomeGroup2);
+            cumulativeGroupIncome.add(cumulativeSpendingIncomeGrp3 / numOfMembersInIncomeGroup3);
+            cumulativeGroupIncome.add(cumulativeSpendingIncomeGrp4 / numOfMembersInIncomeGroup4);
 
             Integer incomeGroup1Points = 1;
             Integer incomeGroup2Points = 1;
             Integer incomeGroup3Points = 1;
             Integer incomeGroup4Points = 1;
 
-            for (int i = 0; i < cummulativeGroupIncome.size(); i++) {
-                for (int j = 0; j < cummulativeGroupIncome.size(); j++) {
+            for (int i = 0; i < cumulativeGroupIncome.size(); i++) {
+                for (int j = 0; j < cumulativeGroupIncome.size(); j++) {
                     if (!(i == j)) {
-                        if (cummulativeGroupIncome.get(i) > cummulativeGroupIncome.get(j)) {
+                        if (cumulativeGroupIncome.get(i) > cumulativeGroupIncome.get(j)) {
                             if (i == 0) {
                                 incomeGroup1Points++;
                             } else if (i == 1) {
@@ -123,23 +123,23 @@
                 }
             }
 
-                    Integer totalCummulativeSpendingOfCountry1 = (Integer) session.getAttribute("totalCummulativeSpendingOfCountry1");
-            Integer totalCummulativeSpendingOfCountry2 = (Integer) session.getAttribute("totalCummulativeSpendingOfCountry2");
+                    Integer totalCumulativeSpendingOfCountry1 = (Integer) session.getAttribute("totalCumulativeSpendingOfCountry1");
+            Integer totalCumulativeSpendingOfCountry2 = (Integer) session.getAttribute("totalCumulativeSpendingOfCountry2");
 
             Integer numOfMembersInCountry1 = (Integer) session.getAttribute("numOfMembersInCountry1");
             Integer numOfMembersInCountry2 = (Integer) session.getAttribute("numOfMembersInCountry2");
 
-            List<Integer> cummulativeGroupCountry = new ArrayList();
-            cummulativeGroupCountry.add(totalCummulativeSpendingOfCountry1 / numOfMembersInCountry1);
-            cummulativeGroupCountry.add(totalCummulativeSpendingOfCountry2 / numOfMembersInCountry2);
+            List<Integer> cumulativeGroupCountry = new ArrayList();
+            cumulativeGroupCountry.add(totalCumulativeSpendingOfCountry1 / numOfMembersInCountry1);
+            cumulativeGroupCountry.add(totalCumulativeSpendingOfCountry2 / numOfMembersInCountry2);
 
             Integer countryGroup1Points = 1;
             Integer countryGroup2Points = 1;
 
-            for (int i = 0; i < cummulativeGroupCountry.size(); i++) {
-                for (int j = 0; j < cummulativeGroupCountry.size(); j++) {
+            for (int i = 0; i < cumulativeGroupCountry.size(); i++) {
+                for (int j = 0; j < cumulativeGroupCountry.size(); j++) {
                     if (!(i == j)) {
-                        if (cummulativeGroupCountry.get(i) > cummulativeGroupCountry.get(j)) {
+                        if (cumulativeGroupCountry.get(i) > cumulativeGroupCountry.get(j)) {
                             if (i == 0) {
                                 countryGroup1Points++;
                             } else if (i == 1) {
@@ -485,10 +485,10 @@
 
 
             data: [
-                {y: '18-25', a: <%=cummulativeSpendingAgeGrp1%>, b: <%=numOfMembersInAgeGroup1%>, c: <%=cummulativeSpendingAgeGrp1 / numOfMembersInAgeGroup1%>},
-                {y: '26-40', a: <%=cummulativeSpendingAgeGrp2%>, b: <%=numOfMembersInAgeGroup2%>, c: <%=cummulativeSpendingAgeGrp2 / numOfMembersInAgeGroup2%>},
-                {y: '41-55', a: <%=cummulativeSpendingAgeGrp3%>, b: <%=numOfMembersInAgeGroup3%>, c: <%=cummulativeSpendingAgeGrp3 / numOfMembersInAgeGroup3%>},
-                {y: '56-75', a: <%=cummulativeSpendingAgeGrp4%>, b: <%=numOfMembersInAgeGroup4%>, c: <%=cummulativeSpendingAgeGrp4 / numOfMembersInAgeGroup4%>}
+                {y: '18-25', a: <%=cumulativeSpendingAgeGrp1%>, b: <%=numOfMembersInAgeGroup1%>, c: <%=cumulativeSpendingAgeGrp1 / numOfMembersInAgeGroup1%>},
+                {y: '26-40', a: <%=cumulativeSpendingAgeGrp2%>, b: <%=numOfMembersInAgeGroup2%>, c: <%=cumulativeSpendingAgeGrp2 / numOfMembersInAgeGroup2%>},
+                {y: '41-55', a: <%=cumulativeSpendingAgeGrp3%>, b: <%=numOfMembersInAgeGroup3%>, c: <%=cumulativeSpendingAgeGrp3 / numOfMembersInAgeGroup3%>},
+                {y: '56-75', a: <%=cumulativeSpendingAgeGrp4%>, b: <%=numOfMembersInAgeGroup4%>, c: <%=cumulativeSpendingAgeGrp4 / numOfMembersInAgeGroup4%>}
             ],
             xkey: 'y',
             ykeys: ['a', 'b', 'c'],
@@ -504,10 +504,10 @@
 
 
             data: [
-                {y: '30k', a: <%=cummulativeSpendingIncomeGrp1%>, b: <%=numOfMembersInIncomeGroup1%>, c: <%=cummulativeSpendingIncomeGrp1 / numOfMembersInIncomeGroup1%>},
-                {y: '60k', a: <%=cummulativeSpendingIncomeGrp2%>, b: <%=numOfMembersInIncomeGroup2%>, c: <%=cummulativeSpendingIncomeGrp2 / numOfMembersInIncomeGroup2%>},
-                {y: '100k', a: <%=cummulativeSpendingIncomeGrp3%>, b: <%=numOfMembersInIncomeGroup3%>, c: <%=cummulativeSpendingIncomeGrp3 / numOfMembersInIncomeGroup3%>},
-                {y: '250k', a: <%=cummulativeSpendingIncomeGrp4%>, b: <%=numOfMembersInIncomeGroup4%>, c: <%=cummulativeSpendingIncomeGrp4 / numOfMembersInIncomeGroup4%>}
+                {y: '30k', a: <%=cumulativeSpendingIncomeGrp1%>, b: <%=numOfMembersInIncomeGroup1%>, c: <%=cumulativeSpendingIncomeGrp1 / numOfMembersInIncomeGroup1%>},
+                {y: '60k', a: <%=cumulativeSpendingIncomeGrp2%>, b: <%=numOfMembersInIncomeGroup2%>, c: <%=cumulativeSpendingIncomeGrp2 / numOfMembersInIncomeGroup2%>},
+                {y: '100k', a: <%=cumulativeSpendingIncomeGrp3%>, b: <%=numOfMembersInIncomeGroup3%>, c: <%=cumulativeSpendingIncomeGrp3 / numOfMembersInIncomeGroup3%>},
+                {y: '250k', a: <%=cumulativeSpendingIncomeGrp4%>, b: <%=numOfMembersInIncomeGroup4%>, c: <%=cumulativeSpendingIncomeGrp4 / numOfMembersInIncomeGroup4%>}
             ],
             xkey: 'y',
             ykeys: ['a', 'b', 'c'],
@@ -522,8 +522,8 @@
 
 
             data: [
-                {y: 'Singapore', a: <%=totalCummulativeSpendingOfCountry1%>, b: <%=numOfMembersInCountry1%>, c: <%=totalCummulativeSpendingOfCountry1 / numOfMembersInCountry1%>},
-                {y: 'Malaysia', a: <%=totalCummulativeSpendingOfCountry2%>, b: <%=numOfMembersInCountry2%>, c: <%=totalCummulativeSpendingOfCountry2 / numOfMembersInCountry2%>},
+                {y: 'Singapore', a: <%=totalCumulativeSpendingOfCountry1%>, b: <%=numOfMembersInCountry1%>, c: <%=totalCumulativeSpendingOfCountry1 / numOfMembersInCountry1%>},
+                {y: 'Malaysia', a: <%=totalCumulativeSpendingOfCountry2%>, b: <%=numOfMembersInCountry2%>, c: <%=totalCumulativeSpendingOfCountry2 / numOfMembersInCountry2%>},
             ],
             xkey: 'y',
             ykeys: ['a', 'b', 'c'],

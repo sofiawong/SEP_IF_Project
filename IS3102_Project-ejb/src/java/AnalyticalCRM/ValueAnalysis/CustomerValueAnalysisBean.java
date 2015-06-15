@@ -1756,11 +1756,11 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
     }
 
     @Override
-    public Integer totalCummulativeSpendingOfAge(Integer startAge, Integer endAge) {
-        System.out.println("totalCummulativeSpendingOfAge()");
+    public Integer totalCumulativeSpendingOfAge(Integer startAge, Integer endAge) {
+        System.out.println("totalCumulativeSpendingOfAge()");
         List<MemberEntity> members = accountManagementBean.listAllMember();
 
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             if (member.getAge() != null) {
                 if (member.getAge() > startAge && member.getAge() < endAge) {
@@ -1768,23 +1768,23 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
                     if (salesRecordOfMember != null) {
                         for (SalesRecordEntity salesRecord : salesRecordOfMember) {
 
-                            totalCummulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
+                            totalCumulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
                         }
                     }
                 }
             }
         }
-        return totalCummulativeSpending;
+        return totalCumulativeSpending;
     }
 
     @Override
-    public Integer totalCummulativeSpendingOfJoinDate(Integer startDate, Integer endDate) {
-        System.out.println("totalCummulativeSpendingOfJoinDate()");
+    public Integer totalCumulativeSpendingOfJoinDate(Integer startDate, Integer endDate) {
+        System.out.println("totalCumulativeSpendingOfJoinDate()");
         List<MemberEntity> members = accountManagementBean.listAllMember();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Integer days = 0;
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             Long numOfDaysBetween = date.getTime() - member.getJoinDate().getTime();
             days = (int) (long) TimeUnit.DAYS.convert(numOfDaysBetween, TimeUnit.MILLISECONDS);
@@ -1793,12 +1793,12 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
                 if (salesRecordOfMember != null) {
                     for (SalesRecordEntity salesRecord : salesRecordOfMember) {
 
-                        totalCummulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
+                        totalCumulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
                     }
                 }
             }
         }
-        return totalCummulativeSpending;
+        return totalCumulativeSpending;
     }
 
     @Override
@@ -1811,7 +1811,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Integer days = 0;
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             regression.addData(member.getAge(), member.getCumulativeSpending());
         }
@@ -1828,7 +1828,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Integer days = 0;
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             regression.addData(member.getAge(), member.getCumulativeSpending());
         }
@@ -1845,7 +1845,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Integer days = 0;
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             regression.addData(member.getAge(), member.getCumulativeSpending());
         }
@@ -1862,7 +1862,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Integer days = 0;
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             regression.addData(member.getIncome(), member.getCumulativeSpending());
         }
@@ -1879,7 +1879,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Integer days = 0;
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             regression.addData(member.getIncome(), member.getCumulativeSpending());
         }
@@ -1896,7 +1896,7 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         Integer days = 0;
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             regression.addData(member.getIncome(), member.getCumulativeSpending());
         }
@@ -1904,32 +1904,32 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
     }
 
     @Override
-    public Integer totalCummulativeSpendingOfIncome(Integer startIncome, Integer endIncome) {
-        System.out.println("totalCummulativeSpendingOfIncome()");
+    public Integer totalCumulativeSpendingOfIncome(Integer startIncome, Integer endIncome) {
+        System.out.println("totalCumulativeSpendingOfIncome()");
         List<MemberEntity> members = accountManagementBean.listAllMember();
 
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             if (member.getIncome() != null) {
                 if (member.getIncome() > startIncome && member.getIncome() < endIncome) {
                     List<SalesRecordEntity> salesRecordOfMember = member.getPurchases();
                     if (salesRecordOfMember != null) {
                         for (SalesRecordEntity salesRecord : salesRecordOfMember) {
-                            totalCummulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
+                            totalCumulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
                         }
                     }
                 }
             }
         }
-        return totalCummulativeSpending;
+        return totalCumulativeSpending;
     }
 
     @Override
-    public Integer totalCummulativeSpendingOfCountry(String country) {
-        System.out.println("totalCummulativeSpendingOfCountry()");
+    public Integer totalCumulativeSpendingOfCountry(String country) {
+        System.out.println("totalCumulativeSpendingOfCountry()");
         List<MemberEntity> members = accountManagementBean.listAllMember();
 
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (MemberEntity member : members) {
             if (member.getCity() != null) {
                 if (member.getCity().equalsIgnoreCase(country)) {
@@ -1937,31 +1937,31 @@ public class CustomerValueAnalysisBean implements CustomerValueAnalysisBeanLocal
                     if (salesRecordOfMember != null) {
                         for (SalesRecordEntity salesRecord : salesRecordOfMember) {
 
-                            totalCummulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
+                            totalCumulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
                         }
                     }
                 }
             }
         }
-        return totalCummulativeSpending;
+        return totalCumulativeSpending;
     }
 
     @Override
-    public Integer averageCummulativeSpending() {
-        System.out.println("averageCummulativeSpending()");
+    public Integer averageCumulativeSpending() {
+        System.out.println("averageCumulativeSpending()");
         List<MemberEntity> members = accountManagementBean.listAllMember();
 
-        int totalCummulativeSpending = 0;
+        int totalCumulativeSpending = 0;
         for (int i = 0; i < members.size(); i++) {
             List<SalesRecordEntity> salesRecordOfMember = members.get(i).getPurchases();
             if (salesRecordOfMember != null) {
                 for (SalesRecordEntity salesRecord : salesRecordOfMember) {
 
-                    totalCummulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
+                    totalCumulativeSpending += getSalesRecordAmountDueInUSD(salesRecord.getId());
                 }
             }
         }
-        return (totalCummulativeSpending / members.size());
+        return (totalCumulativeSpending / members.size());
     }
 
     @Override

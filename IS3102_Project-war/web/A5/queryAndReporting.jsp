@@ -101,7 +101,7 @@
                                                             <input type="checkbox" name="income" value="yes">Income<br/>
                                                             <input type="checkbox" name="age" value="yes">Age<br/>
                                                             <input type="checkbox" name="joinDate" value="yes">Join Date<br/>
-                                                            <input type="checkbox" name="cummulativeSpending" value="yes">Cummulative Spending<br/>                                                        
+                                                            <input type="checkbox" name="cumulativeSpending" value="yes">Cumulative Spending<br/>                                                        
                                                     </div>
                                                     <div class="col-md-6">
                                                         Select Dependent Variable
@@ -109,7 +109,7 @@
                                                             <option value="income">Income</option>
                                                             <option value="age">Age</option>
                                                             <option value="joinDate">Join Date</option>
-                                                            <option value="CummulativeSpending">Cummulative Spending</option>
+                                                            <option value="CumulativeSpending">Cumulative Spending</option>
                                                         </select>
                                                         <br/>
                                                         <input type="submit" value="Generate Regression Analysis Table"/>
@@ -175,7 +175,7 @@
                                                                                                 Join Date</td><td> Min: <input type="text" name="joinDateMin"/> Max: <input type="text" name="joinDateMax"/><br/>
                                                                                             </td></tr>
                                                                                         <tr><td>
-                                                                                                Cummulative Spending</td><td> - Min: <input type="text" name="cummulativeSpendingMin"/> Max: <input type="text" name="cummulativeSpendingMax"/><br/>
+                                                                                                Cumulative Spending</td><td> - Min: <input type="text" name="cumulativeSpendingMin"/> Max: <input type="text" name="cumulativeSpendingMax"/><br/>
                                                                                             </td></tr>
                                                                                         <tr><td>
                                                                                                 Purchase Recency</td><td> Min: <input type="text" name="recencyMin"/> Max: <input type="text" name="recencyMax"/><br/>

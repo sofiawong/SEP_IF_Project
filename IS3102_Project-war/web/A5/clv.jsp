@@ -238,7 +238,7 @@
                                             <th>Num of Orders</th>
                                             <th>Avg Order Price (USD)</th>
                                             <th>Monetary Value (USD)</th>
-                                            <th>Cummulative Customer Value (USD)</th>
+                                            <th>Cumulative Customer Value (USD)</th>
 
                                         </tr>
                                     </thead>

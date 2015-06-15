@@ -343,10 +343,10 @@
                         // the chart.
 
         <%
-            Integer cummulativeSpendingAgeGrp1 = (Integer) session.getAttribute("cummulativeSpendingAgeGrp1");
-            Integer cummulativeSpendingAgeGrp2 = (Integer) session.getAttribute("cummulativeSpendingAgeGrp2");
-            Integer cummulativeSpendingAgeGrp3 = (Integer) session.getAttribute("cummulativeSpendingAgeGrp3");
-            Integer cummulativeSpendingAgeGrp4 = (Integer) session.getAttribute("cummulativeSpendingAgeGrp4");
+            Integer cumulativeSpendingAgeGrp1 = (Integer) session.getAttribute("cumulativeSpendingAgeGrp1");
+            Integer cumulativeSpendingAgeGrp2 = (Integer) session.getAttribute("cumulativeSpendingAgeGrp2");
+            Integer cumulativeSpendingAgeGrp3 = (Integer) session.getAttribute("cumulativeSpendingAgeGrp3");
+            Integer cumulativeSpendingAgeGrp4 = (Integer) session.getAttribute("cumulativeSpendingAgeGrp4");
 
             Integer numOfMembersInAgeGroup1 = (Integer) session.getAttribute("numOfMembersInAgeGroup1");
             Integer numOfMembersInAgeGroup2 = (Integer) session.getAttribute("numOfMembersInAgeGroup2");
@@ -355,10 +355,10 @@
 
         %>
                 data: [
-                {y: '18-25', a: <%=cummulativeSpendingAgeGrp1%>, b: <%=numOfMembersInAgeGroup1%>, c: 1},
-                {y: '26-40', a: <%=cummulativeSpendingAgeGrp2%>, b: <%=numOfMembersInAgeGroup2%>, c: 2},
-                {y: '41-55', a: <%=cummulativeSpendingAgeGrp3%>, b: <%=numOfMembersInAgeGroup3%>, c: 3},
-                {y: '56-75', a: <%=cummulativeSpendingAgeGrp4%>, b: <%=numOfMembersInAgeGroup4%>, c: 4}
+                {y: '18-25', a: <%=cumulativeSpendingAgeGrp1%>, b: <%=numOfMembersInAgeGroup1%>, c: 1},
+                {y: '26-40', a: <%=cumulativeSpendingAgeGrp2%>, b: <%=numOfMembersInAgeGroup2%>, c: 2},
+                {y: '41-55', a: <%=cumulativeSpendingAgeGrp3%>, b: <%=numOfMembersInAgeGroup3%>, c: 3},
+                {y: '56-75', a: <%=cumulativeSpendingAgeGrp4%>, b: <%=numOfMembersInAgeGroup4%>, c: 4}
                 ],
                         xkey: 'y',
                         ykeys: ['a', 'b'],
@@ -373,10 +373,10 @@
                         // the chart.
 
         <%
-            Integer cummulativeSpendingIncomeGrp1 = (Integer) session.getAttribute("cummulativeSpendingIncomeGrp1");
-            Integer cummulativeSpendingIncomeGrp2 = (Integer) session.getAttribute("cummulativeSpendingIncomeGrp2");
-            Integer cummulativeSpendingIncomeGrp3 = (Integer) session.getAttribute("cummulativeSpendingIncomeGrp3");
-            Integer cummulativeSpendingIncomeGrp4 = (Integer) session.getAttribute("cummulativeSpendingIncomeGrp4");
+            Integer cumulativeSpendingIncomeGrp1 = (Integer) session.getAttribute("cumulativeSpendingIncomeGrp1");
+            Integer cumulativeSpendingIncomeGrp2 = (Integer) session.getAttribute("cumulativeSpendingIncomeGrp2");
+            Integer cumulativeSpendingIncomeGrp3 = (Integer) session.getAttribute("cumulativeSpendingIncomeGrp3");
+            Integer cumulativeSpendingIncomeGrp4 = (Integer) session.getAttribute("cumulativeSpendingIncomeGrp4");
 
             Integer numOfMembersInIncomeGroup1 = (Integer) session.getAttribute("numOfMembersInIncomeGroup1");
             Integer numOfMembersInIncomeGroup2 = (Integer) session.getAttribute("numOfMembersInIncomeGroup2");
@@ -385,10 +385,10 @@
 
         %>
                 data: [
-                {y: '30k', a: <%=cummulativeSpendingIncomeGrp1%>, b: <%=numOfMembersInIncomeGroup1%>, c: 1},
-                {y: '60k', a: <%=cummulativeSpendingIncomeGrp2%>, b: <%=numOfMembersInIncomeGroup2%>, c: 2},
-                {y: '100k', a: <%=cummulativeSpendingIncomeGrp3%>, b: <%=numOfMembersInIncomeGroup3%>, c: 3},
-                {y: '250k', a: <%=cummulativeSpendingIncomeGrp4%>, b: <%=numOfMembersInIncomeGroup4%>, c: 4}
+                {y: '30k', a: <%=cumulativeSpendingIncomeGrp1%>, b: <%=numOfMembersInIncomeGroup1%>, c: 1},
+                {y: '60k', a: <%=cumulativeSpendingIncomeGrp2%>, b: <%=numOfMembersInIncomeGroup2%>, c: 2},
+                {y: '100k', a: <%=cumulativeSpendingIncomeGrp3%>, b: <%=numOfMembersInIncomeGroup3%>, c: 3},
+                {y: '250k', a: <%=cumulativeSpendingIncomeGrp4%>, b: <%=numOfMembersInIncomeGroup4%>, c: 4}
                 ],
                         xkey: 'y',
                         ykeys: ['a', 'b'],
@@ -402,16 +402,16 @@
                         // the chart.
 
         <%
-            Integer totalCummulativeSpendingOfCountry1 = (Integer) session.getAttribute("totalCummulativeSpendingOfCountry1");
-            Integer totalCummulativeSpendingOfCountry2 = (Integer) session.getAttribute("totalCummulativeSpendingOfCountry2");
+            Integer totalCumulativeSpendingOfCountry1 = (Integer) session.getAttribute("totalCumulativeSpendingOfCountry1");
+            Integer totalCumulativeSpendingOfCountry2 = (Integer) session.getAttribute("totalCumulativeSpendingOfCountry2");
 
             Integer numOfMembersInCountry1 = (Integer) session.getAttribute("numOfMembersInCountry1");
             Integer numOfMembersInCountry2 = (Integer) session.getAttribute("numOfMembersInCountry2");
 
         %>
                 data: [
-                {y: 'Singapore', a: <%=totalCummulativeSpendingOfCountry1%>, b: <%=numOfMembersInCountry1%>, c: 1},
-                {y: 'Malaysia', a: <%=totalCummulativeSpendingOfCountry2%>, b: <%=numOfMembersInCountry2%>, c: 2},
+                {y: 'Singapore', a: <%=totalCumulativeSpendingOfCountry1%>, b: <%=numOfMembersInCountry1%>, c: 1},
+                {y: 'Malaysia', a: <%=totalCumulativeSpendingOfCountry2%>, b: <%=numOfMembersInCountry2%>, c: 2},
                 ],
                         xkey: 'y',
                         ykeys: ['a', 'b'],

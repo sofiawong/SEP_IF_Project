@@ -72,7 +72,7 @@ public interface CustomerValueAnalysisBeanLocal {
     
     public Integer numOfMembersInCountry(String country);
 
-    public Integer totalCummulativeSpendingOfCountry(String country);
+    public Integer totalCumulativeSpendingOfCountry(String country);
     
     public List<LineItemEntity> sortBestSellingRetailProducts();
     
@@ -108,7 +108,7 @@ public interface CustomerValueAnalysisBeanLocal {
 
     public Double getRSquaredOfAge();
 
-    public Integer totalCummulativeSpendingOfJoinDate(Integer startDate, Integer endDate);
+    public Integer totalCumulativeSpendingOfJoinDate(Integer startDate, Integer endDate);
 
     public Integer numOfMembersInIncomeGroup(Integer startIncome, Integer endIncome);
 
@@ -132,11 +132,11 @@ public interface CustomerValueAnalysisBeanLocal {
 
     public Integer numOfMembersInAgeGroup(Integer startAge, Integer endAge);
 
-    public Integer averageCummulativeSpending();
+    public Integer averageCumulativeSpending();
 
-    public Integer totalCummulativeSpendingOfAge(Integer startAge, Integer endAge);
+    public Integer totalCumulativeSpendingOfAge(Integer startAge, Integer endAge);
 
-    public Integer totalCummulativeSpendingOfIncome(Integer startIncome, Integer endIncome);
+    public Integer totalCumulativeSpendingOfIncome(Integer startIncome, Integer endIncome);
 
     public Double totalMemberRevenue();
 
