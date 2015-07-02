@@ -37,7 +37,7 @@ public class ECommerce_MemberRegisterServlet extends HttpServlet {
 
             if (isExist) {
                 result = "Email already exist. Please try again.";
-                response.sendRedirect("/IS3102_Project-war/B/memberLogin.jsp?errMsg=" + result);
+                response.sendRedirect("/IS3102_Project-war/B/SG/memberLogin.jsp?errMsg=" + result);
             } else {
                 String remoteAddr = request.getRemoteAddr();
                 ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
@@ -51,10 +51,10 @@ public class ECommerce_MemberRegisterServlet extends HttpServlet {
                     accountManagementBean.registerMember(null, null, null, email, null, null, null, null, password);
                     systemSecurityBean.sendActivationEmailForMember(email);
                     result = "?goodMsg=You have registered successfully. Check your email to activate your account!";
-                    response.sendRedirect("/IS3102_Project-war/B/memberLogin.jsp" + result);
+                    response.sendRedirect("/IS3102_Project-war/B/SG/memberLogin.jsp" + result);
                 } else {
                     result = "?errMsg=You have entered an wrong Captcha code.";
-                    response.sendRedirect("/IS3102_Project-war/B/memberLogin.jsp" + result);
+                    response.sendRedirect("/IS3102_Project-war/B/SG/memberLogin.jsp" + result);
                 }
             }
         } catch (Exception ex) {
