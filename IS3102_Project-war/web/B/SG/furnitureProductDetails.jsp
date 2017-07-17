@@ -108,7 +108,7 @@
                                         Width: <%=furniture.getWidth()%>
                                     </p>
                                     <div class="product_meta">
-                                        <span class="posted_in">Category: <a rel="tag" href="../../ECommerce_FurnitureCategoryServlet?cat=<%%>"><%=furniture.getCategory()%></a></span>
+                                        <span class="posted_in">Category: <a rel="tag" href="../../ECommerce_FurnitureCategoryServlet?cat=<%=furniture.getCategory()%>"><%=furniture.getCategory()%></a></span>
                                     </div>
                                     <br/><br/>
 
