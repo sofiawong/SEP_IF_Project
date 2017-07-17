@@ -64,7 +64,7 @@
                                             <span class="product-thumb-info-act-left"><em>Width: <%=furnitures.get(i).getWidth()%></em></span><br/>
                                             <span class="product-thumb-info-act-left"><em>Price: $<%=furnitures.get(i).getPrice()%>0</em></span>
                                             <br/>
-                                            <form action="furnitureProductDetails.jsp">
+                                            <form action="furnitureProductDetails.jsp" >
                                                 <input type="hidden" name="sku" value="<%=furnitures.get(i).getSKU()%>"/>
                                                 <input type="submit" class="btn btn-primary btn-block" value="More Details"/>
                                             </form>
