@@ -43,7 +43,7 @@
                                             <img alt="" class="img-responsive" src="../../..<%=retailProducts.get(i).getImageUrl()%>">
                                         </span>
                                         <span class="product-thumb-info-content">
-                                            <h4><%=retailProducts.get(0).getName()%></h4>
+                                            <h4><%=retailProducts.get(i).getName()%></h4>
                                             <%
                                                 String normalPrice = "$" + retailProducts.get(i).getPrice() + "0";
                                             %>
