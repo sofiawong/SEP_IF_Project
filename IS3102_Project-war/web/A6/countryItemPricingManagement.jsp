@@ -23,7 +23,7 @@
             }
             function update(id) {
                 itemPricingManagement.id.value = id;
-                itemPricingManagement.setPrice.value = parseInt($("#price" + id).val());
+                itemPricingManagement.setPrice.value = Math.round(parseFloat($("#price" + id).val()) * 10.0) / 10.0;
                 document.itemPricingManagement.action = "../CountryItemPricingManagement_UpdateCountryItemPricingServlet";
                 document.itemPricingManagement.submit();
             }
