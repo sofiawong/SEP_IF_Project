@@ -63,7 +63,7 @@
                                 <div class="summary entry-summary">
                                     <h2 class="shorter"><strong><%=retailProduct.getName()%></strong></h2>
 
-                                    <p class="price"><h4 class="amount"><%=retailProduct.getPrice() + "0"%></h4></p>
+                                    <p class="price"><h4 class="amount"><%="$"+ retailProduct.getPrice() + "0"%></h4></p>
                                     <strong>Description</strong>
                                     <p class="taller">
                                         <%=retailProduct.getDescription()%>

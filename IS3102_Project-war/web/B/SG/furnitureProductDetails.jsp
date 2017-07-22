@@ -97,7 +97,7 @@
 
                                     <%}%>
 
-                                    <p class="price"><h4 class="amount"><%=furniture.getPrice()%></h4></p>
+                                    <p class="price"><h4 class="amount"><%="$"+furniture.getPrice()+"0"%></h4></p>
                                     <strong>Description</strong>
                                     <p class="taller">
                                         <%=furniture.getDescription()%>
